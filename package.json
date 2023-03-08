@@ -1,0 +1,53 @@
+{
+  "name": "@arkejs/client",
+  "version": "2.1.0",
+  "description": "An isomorphic JavaScript client for Arke backend connection.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest --coverage --silent",
+    "build": "rm -rf dist && node esbuild.js && tsc --emitDeclarationOnly --outDir dist",
+    "semantic-release": "semantic-release"
+  },
+  "keywords": [
+    "arke",
+    "client"
+  ],
+  "author": "Arkemis S.r.l.",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/react": "^18.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "esbuild": "^0.17.10",
+    "esbuild-node-externals": "^1.6.0",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.3",
+    "prettier-eslint": "^15.0.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^4.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arkemishub/client.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ]
+}
