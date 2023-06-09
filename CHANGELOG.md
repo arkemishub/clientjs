@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/arkemishub/clientjs/compare/v2.1.0...v2.1.1) (2023-06-09)
+
+
+### Bug Fixes
+
+* label on TBaseParameter is now required ([#1](https://github.com/arkemishub/clientjs/issues/1)) ([0e01b69](https://github.com/arkemishub/clientjs/commit/0e01b6920e7c5c4056184f07e624d168e7d41a2a))
+
 # [2.1.0](https://github.com/arkemishub/clientjs/compare/v2.0.0...v2.1.0) (2023-04-19)
 
 
