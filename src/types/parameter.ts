@@ -28,7 +28,7 @@ enum BaseParameter {
 type TBaseParameter<
   Type extends TString | TBool | TNumber | TJson | unknown = unknown
 > = {
-  label?: string;
+  label: string;
   id: string;
   required?: boolean;
   helper_text?: string;
