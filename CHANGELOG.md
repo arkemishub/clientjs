@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/arkemishub/clientjs/compare/v2.1.1...v2.1.2) (2023-06-13)
+
+
+### Bug Fixes
+
+* overrides for project on arke-project-key header ([#2](https://github.com/arkemishub/clientjs/issues/2)) ([2059018](https://github.com/arkemishub/clientjs/commit/20590189e90af3dfe4ec49eafba9821a371b7cb4))
+
 ## [2.1.1](https://github.com/arkemishub/clientjs/compare/v2.1.0...v2.1.1) (2023-06-09)
 
 
