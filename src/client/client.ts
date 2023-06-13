@@ -62,7 +62,7 @@ export default class Client {
             console.error("Session not found");
           }
         }
-        if (project && config.headers)
+        if (project && config.headers && !config.headers["Arke-Project-Key"])
           config.headers["Arke-Project-Key"] = project;
         return config;
       },
