@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/arkemishub/clientjs/compare/v2.1.2...v2.1.3) (2023-06-15)
+
+
+### Bug Fixes
+
+* adjust types for TBaseParameter values ([#3](https://github.com/arkemishub/clientjs/issues/3)) ([9fb1e60](https://github.com/arkemishub/clientjs/commit/9fb1e6052d275376e7ee162ecb61d272642c5590))
+
 ## [2.1.2](https://github.com/arkemishub/clientjs/compare/v2.1.1...v2.1.2) (2023-06-13)
 
 
