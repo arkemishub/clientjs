@@ -33,7 +33,12 @@ type TValues<T> = {
 };
 
 type TBaseParameter<
-  Type extends TString | TBool | TNumber | TJson | unknown = unknown
+  Type extends
+    | string
+    | boolean
+    | number
+    | Record<string, unknown>
+    | unknown = unknown
 > = {
   label: string;
   id: string;
@@ -42,7 +47,15 @@ type TBaseParameter<
   type?: BaseParameter;
   value?: unknown;
 } & TValues<unknown> &
-  Type;
+  Type extends string
+  ? TString
+  : Type extends boolean
+  ? TBool
+  : Type extends number
+  ? TNumber
+  : Type extends Record<string, unknown>
+  ? TJson
+  : Record<string, unknown>;
 
 type TString = {
   max_length?: number;
