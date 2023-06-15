@@ -25,15 +25,37 @@ enum BaseParameter {
   Time = "time",
 }
 
+type TValues<T> = {
+  values?: Array<{
+    label: string;
+    value: T;
+  }>;
+};
+
 type TBaseParameter<
-  Type extends TString | TBool | TNumber | TJson | unknown = unknown
+  Type extends
+    | string
+    | boolean
+    | number
+    | Record<string, unknown>
+    | unknown = unknown
 > = {
   label: string;
   id: string;
   required?: boolean;
   helper_text?: string;
   type?: BaseParameter;
-} & Type;
+  value?: unknown;
+} & TValues<unknown> &
+  Type extends string
+  ? TString
+  : Type extends boolean
+  ? TBool
+  : Type extends number
+  ? TNumber
+  : Type extends Record<string, unknown>
+  ? TJson
+  : Record<string, unknown>;
 
 type TString = {
   max_length?: number;
@@ -41,7 +63,7 @@ type TString = {
   default?: string;
   type: BaseParameter.String;
   value?: string;
-};
+} & TValues<string>;
 
 type TNumber = {
   max?: number;
@@ -49,19 +71,19 @@ type TNumber = {
   default?: number;
   type: BaseParameter.Integer | BaseParameter.Float;
   value?: number;
-};
+} & TValues<number>;
 
 type TBool = {
   default?: boolean;
   type: BaseParameter.Bool;
   value?: boolean;
-};
+} & TValues<boolean>;
 
 type TJson = {
   default?: Record<string, unknown>;
   type: BaseParameter.Json;
   value?: Record<string, unknown>;
-};
+} & TValues<Record<string, unknown>>;
 
 export { BaseParameter };
 export type { TBaseParameter };
