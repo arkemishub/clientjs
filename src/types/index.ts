@@ -16,7 +16,6 @@
 
 export * from "./api";
 export * from "./auth";
-export * from "./authApi";
 export * from "./client";
 export * from "./link";
 export * from "./parameter";

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import { TClientOptions, TToken } from "../types";
+import { TClientOptions } from "../types";
 import { AxiosInstance } from "axios";
-import Auth from "../auth/auth";
+import Auth from "../models/auth";
 import Arke from "../models/arke";
-import clientFactory from "../network/api/lib/clientFactory";
 import Unit from "../models/unit";
 import Group from "../models/group";
+import HttpClient from "../network/api/lib/HttpClient";
 
 /**
  Client for interacting with backend
@@ -38,48 +38,53 @@ export default class Client {
   /**
    * @param params
    */
-  constructor({ serverUrl, project, setSession, getSession }: TClientOptions) {
+  constructor({
+    serverUrl,
+    project,
+    setSession,
+    getSession,
+    prefixPath = "/lib",
+  }: TClientOptions) {
     if (!serverUrl) throw "serverUrl is required.";
+    const arkeHttpClient = new HttpClient({
+      baseUrl: serverUrl,
+      prefixPath,
+      project,
+      getSession,
+    }).instance;
+
     this.serverUrl = serverUrl;
+    this.project = project;
+
+    /*
+     * Arke Default Methods
+     */
+
     this.auth = new Auth({
-      serverUrl: this.serverUrl,
+      httpClient: arkeHttpClient,
       setSession,
     });
-    this.project = project;
-    this.api = clientFactory(serverUrl);
-    this.api.interceptors.request.use(
-      async (config) => {
-        if (getSession && config.headers) {
-          let session = await getSession();
-
-          if (typeof session === "string") {
-            session = JSON.parse(session) as TToken;
-          }
-
-          if (session) {
-            config.headers.Authorization = `Bearer ${session?.access_token}`;
-          } else {
-            console.error("Session not found");
-          }
-        }
-        if (project && config.headers && !config.headers["Arke-Project-Key"])
-          config.headers["Arke-Project-Key"] = project;
-        return config;
-      },
-      (error) => Promise.reject(error)
-    );
 
     this.unit = new Unit({
-      api: this.api,
+      httpClient: arkeHttpClient,
     });
 
     this.arke = new Arke({
-      api: this.api,
+      httpClient: arkeHttpClient,
       arke: "arke",
     });
 
     this.group = new Group({
-      api: this.api,
+      httpClient: arkeHttpClient,
     });
+
+    /*
+     * Custom Methods
+     */
+    this.api = new HttpClient({
+      baseUrl: serverUrl,
+      project,
+      getSession,
+    }).instance;
   }
 }

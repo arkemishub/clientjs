@@ -16,7 +16,7 @@
 
 import {
   LinkDirection,
-  TApiInstance,
+  THttpClientInstance,
   TRequestConfig,
   TResponse,
   TTopology,
@@ -25,13 +25,13 @@ import {
 } from "../types";
 
 export default class Topology {
-  protected api: TApiInstance;
+  protected httpClient: THttpClientInstance;
 
   /**
    * @param params
    */
-  constructor({ api }: TUnitOptions) {
-    this.api = api;
+  constructor({ httpClient }: TUnitOptions) {
+    this.httpClient = httpClient;
   }
 
   /**
@@ -42,7 +42,7 @@ export default class Topology {
     direction?: LinkDirection,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit, true>> {
-    return this.api.get(
+    return this.httpClient.get(
       `/${parent.arkeId}/unit/${parent.id}/link/${direction}`,
       config
     );
@@ -57,7 +57,7 @@ export default class Topology {
     child: { arkeId: string; id: string },
     config?: TRequestConfig
   ): Promise<TResponse<TTopology>> {
-    return this.api.post(
+    return this.httpClient.post(
       `/${parent.arkeId}/unit/${parent.id}/link/${linkId}/${child.arkeId}/unit/${child.id}`,
       config
     );
@@ -72,7 +72,7 @@ export default class Topology {
     child: { arkeId: string; id: string },
     config?: TRequestConfig
   ): Promise<TResponse> {
-    return this.api.delete(
+    return this.httpClient.delete(
       `/${parent.arkeId}/unit/${parent.id}/link/${linkId}/${child.arkeId}/unit/${child.id}`,
       config
     );

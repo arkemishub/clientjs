@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-import AuthApi from "../network/api/authApi";
 import { AxiosResponse } from "axios";
-import { TSignInResponseData, TToken } from "../types";
+import { THttpClientInstance, TSignInResponseData, TToken } from "../types";
 import { TSignUpOptions } from "../types";
 
 export default class Auth {
-  authApi;
+  httpClient: THttpClientInstance;
   setSession?(session: TSignInResponseData): void;
 
   /**
    * @param params
    */
   constructor({
-    serverUrl,
+    httpClient,
     setSession,
   }: {
-    serverUrl: string;
+    httpClient: THttpClientInstance;
     setSession?(session: TSignInResponseData): void;
   }) {
-    this.authApi = new AuthApi(serverUrl);
+    this.httpClient = httpClient;
     this.setSession = setSession;
   }
 
@@ -47,15 +46,20 @@ export default class Auth {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     method?: "credentials"
   ): Promise<AxiosResponse> {
-    return this.authApi.signIn(username, password).then((res) => {
-      try {
-        const session = res.data;
-        this.setSession?.(session);
-        return res;
-      } catch (e) {
-        return res;
-      }
-    });
+    return this.httpClient
+      .post("/auth/signin", {
+        username,
+        password,
+      })
+      .then((res) => {
+        try {
+          const session = res.data;
+          this.setSession?.(session);
+          return res;
+        } catch (e) {
+          return res;
+        }
+      });
   }
 
   /**
@@ -66,7 +70,7 @@ export default class Auth {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     method?: "credentials"
   ): Promise<AxiosResponse> {
-    return this.authApi.signUp(data);
+    return this.httpClient.post("/auth/signup", data);
   }
 
   /**
@@ -75,9 +79,19 @@ export default class Auth {
   async verifyToken(
     access_token: TToken["access_token"]
   ): Promise<AxiosResponse | undefined> {
-    return this.authApi.verifyToken(access_token).then((verifyResponse) => {
-      return verifyResponse;
-    });
+    return this.httpClient
+      .post(
+        "/verify",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      )
+      .then((verifyResponse) => {
+        return verifyResponse;
+      });
   }
 
   /**
@@ -86,8 +100,18 @@ export default class Auth {
   async refreshToken(
     refresh_token: TToken["refresh_token"]
   ): Promise<AxiosResponse> {
-    return this.authApi.refreshToken(refresh_token).then((refreshResponse) => {
-      return refreshResponse;
-    });
+    return this.httpClient
+      .post(
+        "/refresh",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${refresh_token}`,
+          },
+        }
+      )
+      .then((refreshResponse) => {
+        return refreshResponse;
+      });
   }
 }

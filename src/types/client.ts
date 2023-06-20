@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { TSignInResponseData } from "./authApi";
+import { TSignInResponseData } from "./auth";
 import { TToken } from "./auth";
 
 type TClientOptions = {
@@ -22,6 +22,7 @@ type TClientOptions = {
   project?: string | undefined;
   getSession?(): Promise<string | TToken | null>;
   setSession?(session: TSignInResponseData): void;
+  prefixPath?: string;
 };
 
 export type { TClientOptions };

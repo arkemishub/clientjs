@@ -16,7 +16,7 @@
 
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-type TApiInstance = AxiosInstance;
+type THttpClientInstance = AxiosInstance;
 
 type TRequestConfig = AxiosRequestConfig;
 
@@ -25,4 +25,4 @@ type TResponse<Data = any, Multiple = false> = AxiosResponse<{
   messages: Record<string, unknown>[];
 }>;
 
-export type { TApiInstance, TRequestConfig, TResponse };
+export type { THttpClientInstance, TRequestConfig, TResponse };

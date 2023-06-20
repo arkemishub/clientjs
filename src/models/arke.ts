@@ -15,15 +15,20 @@
  */
 
 import Base from "./base";
-import { TApiInstance, TResponse, TTopology } from "../types";
+import { THttpClientInstance, TResponse, TTopology } from "../types";
 
 export default class Arke extends Base {
-  protected declare api: TApiInstance;
+  protected declare httpClient: THttpClientInstance;
   /**
    * @param params
    */
-  constructor({ api }: { api: TApiInstance; arke: string }) {
-    super({ api, arke: "arke" });
+  constructor({
+    httpClient,
+  }: {
+    httpClient: THttpClientInstance;
+    arke: string;
+  }) {
+    super({ httpClient, arke: "arke" });
   }
 
   /**
