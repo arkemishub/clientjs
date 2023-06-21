@@ -14,27 +14,16 @@
  * limitations under the License.
  */
 
-import Axios, { AxiosInstance, AxiosRequestHeaders } from 'axios';
+import { TToken } from "./auth";
+import { AxiosRequestHeaders } from "axios";
 
-/**
- * Create an axios js factory for HTTP requests
- * @param baseUrl
- * @param path
- * @param headers
- * @param timeout
- */
-function clientFactory(
-  baseUrl: string,
-  path?: string,
-  headers?: AxiosRequestHeaders | undefined,
-  timeout?: number
-): AxiosInstance {
-  return Axios.create({
-    baseURL: `${baseUrl}${path ?? ''}`,
-    timeout: timeout ? timeout : 60000,
-    headers,
-    responseType: 'json',
-  });
-}
+type THttpClientOptions = {
+  baseUrl: string;
+  prefixPath?: string;
+  project?: string;
+  getSession?: () => Promise<string | TToken | null>;
+  headers?: AxiosRequestHeaders | undefined;
+  timeout?: number;
+};
 
-export default clientFactory;
+export type { THttpClientOptions };

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import Auth from "./auth";
 import { HTTPStatusCode } from "../network/api/lib/HTTPStatusCode";
 import { UserTypes } from "../types";
-import AuthApi from "../network/api/authApi";
+import Client from "../client/client";
+import mockAxios from "axios";
 
 const validResponse = {
   status: HTTPStatusCode.OK,
@@ -37,35 +37,18 @@ const validResponseWithData = {
   },
 };
 
-const signInMockFn = jest.fn();
-const signUpMockFn = jest.fn();
-const verifyTokenMockFn = jest.fn();
-const refreshTokenMockFn = jest.fn();
-jest.mock("../network/api/authApi", () =>
-  jest.fn().mockImplementation(() => ({
-    signIn: signInMockFn,
-    signUp: signUpMockFn,
-    verifyToken: verifyTokenMockFn,
-    refreshToken: refreshTokenMockFn,
-  }))
-);
-
 const mockSetSession = jest.fn();
 
-const auth = new Auth({
-  serverUrl: SERVER_URL,
+const client = new Client({
+  serverUrl: "http://localhost:4000",
+  project: "test_project",
   setSession: mockSetSession,
 });
 
 describe("Auth", () => {
-  beforeEach(() => {
-    // @ts-ignore
-    AuthApi.mockClear();
-  });
-
   it("should call signIn properly with valid response", async () => {
-    signInMockFn.mockResolvedValue(validResponseWithData);
-    const res = await auth.signIn({
+    jest.spyOn(mockAxios, "post").mockResolvedValue(validResponseWithData);
+    const res = await client.auth.signIn({
       username: USERNAME,
       password: PASSWORD,
     });
@@ -80,8 +63,10 @@ describe("Auth", () => {
   });
 
   it("should call signIn properly with not valid response", async () => {
-    signInMockFn.mockRejectedValue({ status: HTTPStatusCode.Unauthorized });
-    const res = await auth
+    jest
+      .spyOn(mockAxios, "post")
+      .mockRejectedValue({ status: HTTPStatusCode.Unauthorized });
+    const res = await client.auth
       .signIn({
         username: USERNAME,
         password: PASSWORD,
@@ -91,8 +76,8 @@ describe("Auth", () => {
   });
 
   it("should call signUp properly with valid response", async () => {
-    signUpMockFn.mockResolvedValue(validResponseWithData);
-    const res = await auth.signUp({
+    jest.spyOn(mockAxios, "post").mockResolvedValue(validResponseWithData);
+    const res = await client.auth.signUp({
       username: USERNAME,
       password: PASSWORD,
       type: UserTypes.SA,
@@ -101,10 +86,10 @@ describe("Auth", () => {
   });
 
   it("should call signUp properly with not valid response", async () => {
-    signUpMockFn.mockRejectedValue({
+    jest.spyOn(mockAxios, "post").mockRejectedValue({
       status: HTTPStatusCode.InternalServerError,
     });
-    const res = await auth
+    const res = await client.auth
       .signUp({
         username: USERNAME,
         password: PASSWORD,
@@ -115,33 +100,35 @@ describe("Auth", () => {
   });
 
   it("should call verifyToken properly with valid response", async () => {
-    verifyTokenMockFn.mockResolvedValue(validResponse);
-    const res = await auth.verifyToken(TOKEN);
+    jest.spyOn(mockAxios, "post").mockResolvedValue(validResponse);
+    const res = await client.auth.verifyToken(TOKEN);
     expect(res?.status).toEqual(HTTPStatusCode.OK);
   });
 
   it("should call verifyToken properly with not valid response", async () => {
-    verifyTokenMockFn.mockRejectedValue({
+    jest.spyOn(mockAxios, "post").mockRejectedValue({
       status: HTTPStatusCode.Unauthorized,
     });
-    const res = await auth.verifyToken(TOKEN).catch((err) => err);
+    const res = await client.auth.verifyToken(TOKEN).catch((err) => err);
     expect(res.status).toEqual(HTTPStatusCode.Unauthorized);
   });
 
   it("should call refreshToken properly with valid response", async () => {
-    refreshTokenMockFn.mockResolvedValue({
+    jest.spyOn(mockAxios, "post").mockResolvedValue({
       ...validResponse,
       data: { access_token: TOKEN, refresh_token: `r_${TOKEN}` },
     });
-    const res = await auth.refreshToken(TOKEN);
+    const res = await client.auth.refreshToken(TOKEN);
     expect(res.status).toEqual(HTTPStatusCode.OK);
     expect(res.data.access_token).toEqual(TOKEN);
     expect(res.data.refresh_token).toEqual(`r_${TOKEN}`);
   });
 
   it("should call refreshToken properly with not valid response", async () => {
-    refreshTokenMockFn.mockRejectedValue({ status: HTTPStatusCode.BadRequest });
-    const res = await auth.refreshToken(TOKEN).catch((err) => err);
+    jest
+      .spyOn(mockAxios, "post")
+      .mockRejectedValue({ status: HTTPStatusCode.BadRequest });
+    const res = await client.auth.refreshToken(TOKEN).catch((err) => err);
     expect(res.status).toEqual(HTTPStatusCode.BadRequest);
   });
 });

@@ -15,7 +15,7 @@
  */
 
 import {
-  TApiInstance,
+  THttpClientInstance,
   TRequestConfig,
   TResponse,
   TStruct,
@@ -25,15 +25,15 @@ import {
 import Topology from "./topology";
 
 export default class Unit {
-  protected api: TApiInstance;
+  protected httpClient: THttpClientInstance;
   topology: Topology;
 
   /**
    * @param params
    */
-  constructor({ api }: TUnitOptions) {
-    this.api = api;
-    this.topology = new Topology({ api });
+  constructor({ httpClient }: TUnitOptions) {
+    this.httpClient = httpClient;
+    this.topology = new Topology({ httpClient });
   }
 
   /**
@@ -44,7 +44,7 @@ export default class Unit {
     data: Record<string, unknown>,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit>> {
-    return this.api.post(`/${arkeId}/unit`, data, config);
+    return this.httpClient.post(`/${arkeId}/unit`, data, config);
   }
 
   /**
@@ -55,7 +55,7 @@ export default class Unit {
     id: string,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit>> {
-    return this.api.get(`/${arkeId}/unit/${id}`, config);
+    return this.httpClient.get(`/${arkeId}/unit/${id}`, config);
   }
 
   /**
@@ -68,7 +68,7 @@ export default class Unit {
     data: Record<string, unknown>,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit>> {
-    return this.api.put(`/${arkeId}/unit/${id}`, data, config);
+    return this.httpClient.put(`/${arkeId}/unit/${id}`, data, config);
   }
 
   /**
@@ -79,7 +79,7 @@ export default class Unit {
     id: string,
     config?: TRequestConfig
   ): Promise<TResponse> {
-    return this.api.delete(`/${arkeId}/unit/${id}`, config);
+    return this.httpClient.delete(`/${arkeId}/unit/${id}`, config);
   }
 
   /**
@@ -90,7 +90,7 @@ export default class Unit {
     id: string,
     config?: TRequestConfig
   ): Promise<TResponse<TStruct>> {
-    return this.api.get(`/${arkeId}/unit/${id}/struct`, config);
+    return this.httpClient.get(`/${arkeId}/unit/${id}/struct`, config);
   }
 
   /**
@@ -100,13 +100,13 @@ export default class Unit {
     arkeId: string,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit, true>> {
-    return this.api.get(`/${arkeId}/unit`, config);
+    return this.httpClient.get(`/${arkeId}/unit`, config);
   }
 
   /**
    * GetAll details
    */
   search(config?: TRequestConfig): Promise<TResponse<TUnit, true>> {
-    return this.api.get(`/unit`, config);
+    return this.httpClient.get(`/unit`, config);
   }
 }

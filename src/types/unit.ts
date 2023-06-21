@@ -17,7 +17,7 @@
 import { AxiosInstance } from "axios";
 
 type TUnitOptions = {
-  api: AxiosInstance;
+  httpClient: AxiosInstance;
 };
 
 type TUnit = {

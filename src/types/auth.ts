@@ -13,10 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { TBaseUser } from "./user";
+import { TUnit } from "./unit";
 
 type TToken = {
   access_token: string;
   refresh_token: string;
 };
 
-export type { TToken };
+type TSignUpOptions = TBaseUser & {
+  password: string;
+};
+type TSignUpResponseData = TBaseUser & TUnit;
+
+type TSignInResponseData = TBaseUser & TUnit;
+
+type TRefreshResponseData = {
+  access_token: string;
+  refresh_token: string;
+};
+
+export type {
+  TSignUpOptions,
+  TSignUpResponseData,
+  TSignInResponseData,
+  TRefreshResponseData,
+  TToken,
+};

@@ -15,7 +15,7 @@
  */
 
 import {
-  TApiInstance,
+  THttpClientInstance,
   TRequestConfig,
   TResponse,
   TStruct,
@@ -25,12 +25,12 @@ import {
 import Base from "./base";
 
 export default class Group extends Base {
-  protected declare api: TApiInstance;
+  protected declare httpClient: THttpClientInstance;
   /**
    * @param params
    */
-  constructor({ api }: { api: TApiInstance }) {
-    super({ api, arke: "group" });
+  constructor({ httpClient }: { httpClient: THttpClientInstance }) {
+    super({ httpClient, arke: "group" });
   }
 
   /**
@@ -50,7 +50,7 @@ export default class Group extends Base {
     groupId: string,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit, true>> {
-    return this.api.get(`/group/${groupId}/arke`, config);
+    return this.httpClient.get(`/group/${groupId}/arke`, config);
   }
 
   /**
@@ -60,7 +60,7 @@ export default class Group extends Base {
     groupId: string,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit, true>> {
-    return this.api.get(`/group/${groupId}/unit`, config);
+    return this.httpClient.get(`/group/${groupId}/unit`, config);
   }
 
   /**
@@ -71,7 +71,7 @@ export default class Group extends Base {
     unitId: string,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit>> {
-    return this.api.get(`/group/${groupId}/unit/${unitId}`, config);
+    return this.httpClient.get(`/group/${groupId}/unit/${unitId}`, config);
   }
 
   /**
