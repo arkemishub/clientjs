@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/arkemishub/clientjs/compare/v2.1.3...v2.2.0) (2023-06-21)
+
+
+### Features
+
+* add prefix path to client + refactoring ([#6](https://github.com/arkemishub/clientjs/issues/6)) ([75d2070](https://github.com/arkemishub/clientjs/commit/75d2070cb89d69572ec62a2a5fda8eedebebf9a6))
+
 ## [2.1.3](https://github.com/arkemishub/clientjs/compare/v2.1.2...v2.1.3) (2023-06-15)
 
 
