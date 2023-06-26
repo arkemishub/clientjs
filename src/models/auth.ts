@@ -79,19 +79,15 @@ export default class Auth {
   async verifyToken(
     access_token: TToken["access_token"]
   ): Promise<AxiosResponse | undefined> {
-    return this.httpClient
-      .post(
-        "/verify",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then((verifyResponse) => {
-        return verifyResponse;
-      });
+    return this.httpClient.post(
+      "/verify",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
   }
 
   /**
@@ -100,18 +96,30 @@ export default class Auth {
   async refreshToken(
     refresh_token: TToken["refresh_token"]
   ): Promise<AxiosResponse> {
-    return this.httpClient
-      .post(
-        "/refresh",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${refresh_token}`,
-          },
-        }
-      )
-      .then((refreshResponse) => {
-        return refreshResponse;
-      });
+    return this.httpClient.post(
+      "/refresh",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${refresh_token}`,
+        },
+      }
+    );
+  }
+
+  /**
+   * Changes username password
+   */
+  async changePassword({
+    old_password,
+    password,
+  }: {
+    old_password: string;
+    password: string;
+  }): Promise<AxiosResponse> {
+    return this.httpClient.post("/auth/change_password", {
+      old_password,
+      password,
+    });
   }
 }
