@@ -16,6 +16,7 @@
 
 import { TSignInResponseData } from "./auth";
 import { TToken } from "./auth";
+import { AxiosInstance } from "axios/index";
 
 type TClientOptions = {
   serverUrl?: string | undefined;
@@ -23,6 +24,7 @@ type TClientOptions = {
   getSession?(): Promise<string | TToken | null>;
   setSession?(session: TSignInResponseData): void;
   prefixPath?: string;
+  apiConfig?(api: AxiosInstance): AxiosInstance;
 };
 
 export type { TClientOptions };
