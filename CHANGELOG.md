@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/arkemishub/clientjs/compare/v2.2.0...v2.3.0) (2023-06-26)
+
+
+### Features
+
+* add changePassword method ([#9](https://github.com/arkemishub/clientjs/issues/9)) ([356012d](https://github.com/arkemishub/clientjs/commit/356012d30b4d63c87e6f77251308927e3d0ec3f2))
+
 # [2.2.0](https://github.com/arkemishub/clientjs/compare/v2.1.3...v2.2.0) (2023-06-21)
 
 
