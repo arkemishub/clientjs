@@ -15,7 +15,7 @@
  */
 
 import { TToken } from "./auth";
-import { AxiosRequestHeaders } from "axios";
+import { AxiosInstance, AxiosRequestHeaders } from "axios";
 
 type THttpClientOptions = {
   baseUrl: string;
@@ -24,6 +24,7 @@ type THttpClientOptions = {
   getSession?: () => Promise<string | TToken | null>;
   headers?: AxiosRequestHeaders | undefined;
   timeout?: number;
+  httpClientConfig?(api: AxiosInstance): AxiosInstance;
 };
 
 export type { THttpClientOptions };

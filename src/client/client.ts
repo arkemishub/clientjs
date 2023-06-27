@@ -44,6 +44,7 @@ export default class Client {
     setSession,
     getSession,
     prefixPath = "/lib",
+    httpClientConfig,
   }: TClientOptions) {
     if (!serverUrl) throw "serverUrl is required.";
     const arkeHttpClient = new HttpClient({
@@ -51,6 +52,7 @@ export default class Client {
       prefixPath,
       project,
       getSession,
+      httpClientConfig,
     }).instance;
 
     this.serverUrl = serverUrl;
@@ -85,6 +87,7 @@ export default class Client {
       baseUrl: serverUrl,
       project,
       getSession,
+      httpClientConfig,
     }).instance;
   }
 }

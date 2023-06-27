@@ -29,6 +29,7 @@ class HttpClient {
     getSession,
     timeout,
     headers,
+    httpClientConfig,
   }: THttpClientOptions) {
     const baseURL = `${baseUrl}${prefixPath ?? ""}`;
 
@@ -57,10 +58,13 @@ class HttpClient {
         }
         if (project && config.headers && !config.headers["Arke-Project-Key"])
           config.headers["Arke-Project-Key"] = project;
+
         return config;
       },
       (error) => Promise.reject(error)
     );
+
+    if (httpClientConfig) httpClientConfig(this.instance);
   }
 }
 
