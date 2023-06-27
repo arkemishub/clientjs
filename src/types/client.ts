@@ -24,7 +24,7 @@ type TClientOptions = {
   getSession?(): Promise<string | TToken | null>;
   setSession?(session: TSignInResponseData): void;
   prefixPath?: string;
-  apiConfig?(api: AxiosInstance): AxiosInstance;
+  httpClientConfig?(api: AxiosInstance): AxiosInstance;
 };
 
 export type { TClientOptions };

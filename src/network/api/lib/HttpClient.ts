@@ -29,7 +29,7 @@ class HttpClient {
     getSession,
     timeout,
     headers,
-    apiConfig,
+    httpClientConfig,
   }: THttpClientOptions) {
     const baseURL = `${baseUrl}${prefixPath ?? ""}`;
 
@@ -64,7 +64,7 @@ class HttpClient {
       (error) => Promise.reject(error)
     );
 
-    if (apiConfig) apiConfig(this.instance);
+    if (httpClientConfig) httpClientConfig(this.instance);
   }
 }
 

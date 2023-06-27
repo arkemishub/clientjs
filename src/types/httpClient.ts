@@ -24,7 +24,7 @@ type THttpClientOptions = {
   getSession?: () => Promise<string | TToken | null>;
   headers?: AxiosRequestHeaders | undefined;
   timeout?: number;
-  apiConfig?(api: AxiosInstance): AxiosInstance;
+  httpClientConfig?(api: AxiosInstance): AxiosInstance;
 };
 
 export type { THttpClientOptions };
