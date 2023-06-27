@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/arkemishub/clientjs/compare/v2.3.0...v2.4.0) (2023-06-27)
+
+
+### Features
+
+* add httpClientConfig to define external overrides ([#11](https://github.com/arkemishub/clientjs/issues/11)) ([7d97608](https://github.com/arkemishub/clientjs/commit/7d9760848eb8784d37a6769315ce3daab6c39dfc))
+
 # [2.3.0](https://github.com/arkemishub/clientjs/compare/v2.2.0...v2.3.0) (2023-06-26)
 
 
