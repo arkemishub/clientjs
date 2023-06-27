@@ -6,3 +6,6 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "weekly"
+    # Allow up to 3 open pull requests for pip dependencies
+    open-pull-requests-limit: 3
+
