@@ -16,7 +16,7 @@
   "author": "Arkemis S.r.l.",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.24.0"
+    "axios": "1.4.0"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
