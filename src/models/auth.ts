@@ -80,7 +80,7 @@ export default class Auth {
     access_token: TToken["access_token"]
   ): Promise<AxiosResponse | undefined> {
     return this.httpClient.post(
-      "/verify",
+      "/auth/verify",
       {},
       {
         headers: {
@@ -97,7 +97,7 @@ export default class Auth {
     refresh_token: TToken["refresh_token"]
   ): Promise<AxiosResponse> {
     return this.httpClient.post(
-      "/refresh",
+      "/auth/refresh",
       {},
       {
         headers: {
