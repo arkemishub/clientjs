@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/arkemishub/clientjs/compare/v2.4.0...v2.4.1) (2023-06-30)
+
+
+### Bug Fixes
+
+* adjust verify and refresh endpoints ([#19](https://github.com/arkemishub/clientjs/issues/19)) ([6da9701](https://github.com/arkemishub/clientjs/commit/6da97015ccb0dc2fdb905dcbf7407c8eac82859e))
+
 # [2.4.0](https://github.com/arkemishub/clientjs/compare/v2.3.0...v2.4.0) (2023-06-27)
 
 
