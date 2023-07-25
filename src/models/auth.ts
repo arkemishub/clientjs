@@ -64,6 +64,8 @@ export default class Auth {
 
   /**
    * Sign up a new user
+   * @param data
+   * @param method
    */
   async signUp(
     data: TSignUpOptions,
@@ -75,6 +77,7 @@ export default class Auth {
 
   /**
    * Verify Token to verify if token is valid
+   * @param access_token
    */
   async verifyToken(
     access_token: TToken["access_token"]
@@ -92,6 +95,7 @@ export default class Auth {
 
   /**
    * Refresh Token to refresh if token is expired
+   * @param refresh_token
    */
   async refreshToken(
     refresh_token: TToken["refresh_token"]
@@ -109,6 +113,8 @@ export default class Auth {
 
   /**
    * Changes username password
+   * @param old_password
+   * @param password
    */
   async changePassword({
     old_password,
@@ -120,6 +126,33 @@ export default class Auth {
     return this.httpClient.post("/auth/change_password", {
       old_password,
       password,
+    });
+  }
+
+  /**
+   * Request recover password
+   * @param email
+   */
+  async recoverPassword({ email }: { email: string }): Promise<AxiosResponse> {
+    return this.httpClient.post("/auth/recover_password", {
+      email,
+    });
+  }
+
+  /**
+   * Reset user password
+   * @param new_password
+   * @param token
+   */
+  async resetPassword({
+    new_password,
+    token,
+  }: {
+    new_password: string;
+    token: string;
+  }): Promise<AxiosResponse> {
+    return this.httpClient.post(`/auth/reset_password/${token}`, {
+      new_password,
     });
   }
 }
