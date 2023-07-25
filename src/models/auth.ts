@@ -133,7 +133,7 @@ export default class Auth {
    * Request recover password
    * @param email
    */
-  async recoverPassword({ email }: { email: string }): Promise<AxiosResponse> {
+  async recoverPassword(email: string): Promise<AxiosResponse> {
     return this.httpClient.post("/auth/recover_password", {
       email,
     });
