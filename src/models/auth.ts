@@ -116,13 +116,10 @@ export default class Auth {
    * @param old_password
    * @param password
    */
-  async changePassword({
-    old_password,
-    password,
-  }: {
-    old_password: string;
-    password: string;
-  }): Promise<AxiosResponse> {
+  async changePassword(
+    old_password: string,
+    password: string
+  ): Promise<AxiosResponse> {
     return this.httpClient.post("/auth/change_password", {
       old_password,
       password,
@@ -144,13 +141,10 @@ export default class Auth {
    * @param new_password
    * @param token
    */
-  async resetPassword({
-    new_password,
-    token,
-  }: {
-    new_password: string;
-    token: string;
-  }): Promise<AxiosResponse> {
+  async resetPassword(
+    new_password: string,
+    token: string
+  ): Promise<AxiosResponse> {
     return this.httpClient.post(`/auth/reset_password/${token}`, {
       new_password,
     });
