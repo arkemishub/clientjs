@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/arkemishub/clientjs/compare/v2.4.1...v2.5.0) (2023-07-26)
+
+
+### Features
+
+* add recover and reset password methods ([#23](https://github.com/arkemishub/clientjs/issues/23)) ([f5a13be](https://github.com/arkemishub/clientjs/commit/f5a13bef39fdf7a15927d4ae4881030744cee707))
+
 ## [2.4.1](https://github.com/arkemishub/clientjs/compare/v2.4.0...v2.4.1) (2023-06-30)
 
 
