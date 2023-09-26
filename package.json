@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "npm run build",
     "test": "jest --coverage --silent",
     "build": "rm -rf dist && node esbuild.js && tsc --emitDeclarationOnly --outDir dist",
     "semantic-release": "semantic-release"
