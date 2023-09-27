@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/arkemishub/clientjs/compare/v2.5.0...v2.6.0) (2023-09-27)
+
+
+### Features
+
+* topology improvements and update docs ([#30](https://github.com/arkemishub/clientjs/issues/30)) ([3584414](https://github.com/arkemishub/clientjs/commit/3584414d68d17e8436a90c3091bef34fa0376064))
+
 # [2.5.0](https://github.com/arkemishub/clientjs/compare/v2.4.1...v2.5.0) (2023-07-26)
 
 
