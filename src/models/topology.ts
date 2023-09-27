@@ -24,7 +24,12 @@ import {
   TUnitOptions,
 } from "../types";
 
-type Parent = { groupId?: string; arkeId?: string; id: string };
+type Parent =
+  | { arkeId: string; id: string; groupId?: never }
+  | { groupId: string; id: string; arkeId?: never };
+type Child =
+  | { arkeId: string; id: string; groupId?: never }
+  | { groupId: string; id: string; arkeId?: never };
 export default class Topology {
   protected httpClient: THttpClientInstance;
 
@@ -38,7 +43,7 @@ export default class Topology {
   private getParent(parent: Parent) {
     return parent.groupId ?? parent.arkeId;
   }
-  private getChild(child: Parent) {
+  private getChild(child: Child) {
     return child.groupId ?? child.arkeId;
   }
 
@@ -60,9 +65,9 @@ export default class Topology {
    * Creates a new link between 2 entities
    */
   addLink(
-    parent: { groupId?: string; arkeId?: string; id: string },
+    parent: Parent,
     linkId: string,
-    child: { groupId?: string; arkeId?: string; id: string },
+    child: Child,
     config?: TRequestConfig
   ): Promise<TResponse<TTopology>> {
     return this.httpClient.post(
@@ -77,9 +82,9 @@ export default class Topology {
    * Creates a new link between 2 entities
    */
   deleteLink(
-    parent: { groupId?: string; arkeId?: string; id: string },
+    parent: Parent,
     linkId: string,
-    child: { groupId?: string; arkeId?: string; id: string },
+    child: Child,
     config?: TRequestConfig
   ): Promise<TResponse> {
     return this.httpClient.delete(
