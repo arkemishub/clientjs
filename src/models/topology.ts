@@ -24,6 +24,12 @@ import {
   TUnitOptions,
 } from "../types";
 
+type Parent =
+  | { arkeId: string; id: string; groupId?: never }
+  | { groupId: string; id: string; arkeId?: never };
+type Child =
+  | { arkeId: string; id: string; groupId?: never }
+  | { groupId: string; id: string; arkeId?: never };
 export default class Topology {
   protected httpClient: THttpClientInstance;
 
@@ -34,16 +40,23 @@ export default class Topology {
     this.httpClient = httpClient;
   }
 
+  private getParent(parent: Parent) {
+    return parent.groupId ?? parent.arkeId;
+  }
+  private getChild(child: Child) {
+    return child.groupId ?? child.arkeId;
+  }
+
   /**
    * Get all links related to a Unit by direction
    */
   getLinks(
-    parent: { arkeId: string; id: string },
+    parent: Parent,
     direction?: LinkDirection,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit, true>> {
     return this.httpClient.get(
-      `/${parent.arkeId}/unit/${parent.id}/link/${direction}`,
+      `/${this.getParent(parent)}/unit/${parent.id}/link/${direction}`,
       config
     );
   }
@@ -52,13 +65,15 @@ export default class Topology {
    * Creates a new link between 2 entities
    */
   addLink(
-    parent: { arkeId: string; id: string },
+    parent: Parent,
     linkId: string,
-    child: { arkeId: string; id: string },
+    child: Child,
     config?: TRequestConfig
   ): Promise<TResponse<TTopology>> {
     return this.httpClient.post(
-      `/${parent.arkeId}/unit/${parent.id}/link/${linkId}/${child.arkeId}/unit/${child.id}`,
+      `/${this.getParent(parent)}/unit/${
+        parent.id
+      }/link/${linkId}/${this.getChild(child)}/unit/${child.id}`,
       config
     );
   }
@@ -67,13 +82,15 @@ export default class Topology {
    * Creates a new link between 2 entities
    */
   deleteLink(
-    parent: { arkeId: string; id: string },
+    parent: Parent,
     linkId: string,
-    child: { arkeId: string; id: string },
+    child: Child,
     config?: TRequestConfig
   ): Promise<TResponse> {
     return this.httpClient.delete(
-      `/${parent.arkeId}/unit/${parent.id}/link/${linkId}/${child.arkeId}/unit/${child.id}`,
+      `/${this.getParent(parent)}/unit/${
+        parent.id
+      }/link/${linkId}/${this.getChild(child)}/unit/${child.id}`,
       config
     );
   }
