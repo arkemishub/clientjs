@@ -15,7 +15,12 @@
  */
 
 import { AxiosResponse } from "axios";
-import { THttpClientInstance, TSignInResponseData, TToken } from "../types";
+import {
+  THttpClientInstance,
+  TRequestConfig,
+  TSignInResponseData,
+  TToken,
+} from "../types";
 import { TSignUpOptions } from "../types";
 
 export default class Auth {
@@ -40,17 +45,23 @@ export default class Auth {
    * Sign in the user
    * @param credentials
    * @param method
+   * @param config
    */
   async signIn(
     { username, password }: { username: string; password: string },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    method?: "credentials"
+    method?: "credentials",
+    config?: TRequestConfig
   ): Promise<AxiosResponse> {
     return this.httpClient
-      .post("/auth/signin", {
-        username,
-        password,
-      })
+      .post(
+        "/auth/signin",
+        {
+          username,
+          password,
+        },
+        config
+      )
       .then((res) => {
         try {
           const session = res.data;
