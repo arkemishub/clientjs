@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/arkemishub/clientjs/compare/v2.6.0...v2.6.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* add config params on signIn method ([#31](https://github.com/arkemishub/clientjs/issues/31)) ([074d180](https://github.com/arkemishub/clientjs/commit/074d180c36a2066da896350610cd81138b94c6ee))
+
 # [2.6.0](https://github.com/arkemishub/clientjs/compare/v2.5.0...v2.6.0) (2023-09-27)
 
 
