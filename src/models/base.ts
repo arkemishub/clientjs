@@ -17,6 +17,7 @@
 import {
   THttpClientInstance,
   TRequestConfig,
+  TRequestData,
   TResponse,
   TStruct,
   TUnit,
@@ -46,7 +47,7 @@ export default class Base {
    * Creates
    */
   create(
-    data: Record<string, unknown>,
+    data: TRequestData,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit>> {
     return this.httpClient.post(`/${this.arke}/unit`, data, config);
@@ -78,7 +79,7 @@ export default class Base {
    */
   edit(
     id: string,
-    data: Record<string, unknown>,
+    data: TRequestData,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit>> {
     return this.httpClient.put(`/${this.arke}/unit/${id}`, data, config);

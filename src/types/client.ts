@@ -16,7 +16,7 @@
 
 import { TSignInResponseData } from "./auth";
 import { TToken } from "./auth";
-import { AxiosInstance } from "axios/index";
+import { AxiosInstance } from "axios";
 
 type TClientOptions = {
   serverUrl?: string | undefined;
