@@ -1,3 +1,10 @@
+## [2.6.2](https://github.com/arkemishub/clientjs/compare/v2.6.1...v2.6.2) (2023-10-24)
+
+
+### Bug Fixes
+
+* extend types for data requests ([#32](https://github.com/arkemishub/clientjs/issues/32)) ([4a9aa16](https://github.com/arkemishub/clientjs/commit/4a9aa16f338b8b7d923d153e8ead9326bb4ab4d3))
+
 ## [2.6.1](https://github.com/arkemishub/clientjs/compare/v2.6.0...v2.6.1) (2023-10-11)
 
 
