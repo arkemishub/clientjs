@@ -38,6 +38,11 @@ const mockConditionalEmptyFilter = new Filter({
   filters: [],
 });
 
+const mockConditionalIsNullFilter = new Filter({
+  operator: RelationalOperator.ISNULL,
+  key: "value",
+});
+
 describe("Filter", () => {
   it("should create correct RelationalFilter instance", () => {
     expect(mockRelationalFilter.filters).toBeUndefined();
@@ -63,6 +68,14 @@ describe("Filter", () => {
     expect(mockConditionalFilter.toString()).toBe(
       "and(contains(test,1),gt(index,3))"
     );
+  });
+
+  it("should ConditionalFilter toString should work properly with isnull", () => {
+    expect(mockConditionalIsNullFilter.toString()).toBe("isnull(value)");
+  });
+
+  it("should ConditionalFilter toString should work properly with not", () => {
+    expect(mockConditionalIsNullFilter.toString()).toBe("isnot(isnull(value))");
   });
 
   it("should get length of the filters", () => {

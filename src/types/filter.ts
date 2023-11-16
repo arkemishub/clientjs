@@ -29,6 +29,8 @@ enum RelationalOperator {
   GTE = "gte",
   GT = "gt",
   IN = "in",
+  ISNULL = "isnull",
+  NOT = "not",
 }
 
 type TRelationalOperator = RelationalOperator.EQ | RelationalOperator.CONTAINS;
@@ -43,7 +45,7 @@ type TConditionalOperator = ConditionalOperator.OR | ConditionalOperator.AND;
 type TRelationalFilter = {
   operator: RelationalOperator;
   key: string;
-  value: unknown;
+  value?: unknown;
 };
 
 type TConditionalFilter = {
