@@ -31,7 +31,14 @@ function areConditionalParams(
 function areRelationalParams(
   params: TConditionalFilter | TRelationalFilter
 ): params is TRelationalFilter {
-  return (params as TRelationalFilter).key !== undefined;
+  if (params.operator === RelationalOperator.ISNULL)
+    return (params as TRelationalFilter).key !== undefined;
+  if (params.operator === RelationalOperator.NOT)
+    return (params as TRelationalFilter).value !== undefined;
+  return (
+    (params as TRelationalFilter).key !== undefined &&
+    (params as TRelationalFilter).value !== undefined
+  );
 }
 
 export default class Filter<
@@ -60,11 +67,11 @@ export default class Filter<
         return `${this.operator}(${this.filters.map((f) => f.toString())})`;
       else return "";
     }
-    if (this.operator === RelationalOperator.ISNULL) {
+    if (this.operator === RelationalOperator.ISNULL)
       return `${this.operator}(${this.key})`;
-    } else {
-      return `${this.operator}(${this.key},${this.value})`;
-    }
+    if (this.operator === RelationalOperator.NOT)
+      return `${this.operator}(${this.value})`;
+    return `${this.operator}(${this.key},${this.value})`;
   }
 
   getLength(): number {

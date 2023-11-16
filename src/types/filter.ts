@@ -44,7 +44,7 @@ type TConditionalOperator = ConditionalOperator.OR | ConditionalOperator.AND;
 
 type TRelationalFilter = {
   operator: RelationalOperator;
-  key: string;
+  key?: string;
   value?: unknown;
 };
 

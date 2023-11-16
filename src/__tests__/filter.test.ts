@@ -43,6 +43,11 @@ const mockConditionalIsNullFilter = new Filter({
   key: "value",
 });
 
+const mockConditionalIsNotFilter = new Filter({
+  operator: RelationalOperator.NOT,
+  value: mockConditionalIsNullFilter.toString(),
+});
+
 describe("Filter", () => {
   it("should create correct RelationalFilter instance", () => {
     expect(mockRelationalFilter.filters).toBeUndefined();
@@ -75,7 +80,7 @@ describe("Filter", () => {
   });
 
   it("should ConditionalFilter toString should work properly with not", () => {
-    expect(mockConditionalIsNullFilter.toString()).toBe("isnot(isnull(value))");
+    expect(mockConditionalIsNotFilter.toString()).toBe("not(isnull(value))");
   });
 
   it("should get length of the filters", () => {
