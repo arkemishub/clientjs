@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/arkemishub/clientjs/compare/v2.6.2...v2.7.0) (2023-11-17)
+
+
+### Features
+
+* extend relational operator isnull and not ([#34](https://github.com/arkemishub/clientjs/issues/34)) ([62485f5](https://github.com/arkemishub/clientjs/commit/62485f5c3b23d00a5bdf68b19fa73d4002ed9440))
+
 ## [2.6.2](https://github.com/arkemishub/clientjs/compare/v2.6.1...v2.6.2) (2023-10-24)
 
 
