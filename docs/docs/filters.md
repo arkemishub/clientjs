@@ -53,6 +53,8 @@ Below the list of available Relational Operator
 | GT          | "ge"             | Elements that are greater than a specified value                |
 | GTE         | "get"            | Elements that are greater than equal a specified value          |
 | IN          | "in"             | Elements that are included in a specified value                 |
+| ISNULL      | "isnull"         | Element that is null                                            |
+| NOT         | "not"            | Denied elements filters                                         |
 
 After creating a filter it's possible compose more complex filters through `ConditionalOperator`:
 
@@ -77,8 +79,51 @@ const complexFilter = new Filter({
 });
 ```
 
-This will create a filter string object as below: 
+With `toString()` function will create a filter string object as below: 
 
 ```
+complexFilter.toString();
+
 and(eq(id,1),contains(label,test))
 ```
+
+### ISNULL operator
+
+If you want check that value of a key is NULL filters you can use the `ISNULL` operator, 
+it expects the operator and the value:
+
+```
+const isNullFilter = new Filter({
+  operator: RelationalOperator.ISNULL,
+  key: "value",
+});
+```
+
+With `toString()` function will create a denied filter string object as below:
+
+```
+isNotNullFilter.toString();
+
+isnull(value)
+```
+
+
+### NOT operator
+
+If you want a denied filters you can use the `NOT` operator:
+
+```
+const isNotNullFilter = new Filter({
+    operator: RelationalOperator.NOT,
+    value: [isNullFilter],
+});
+```
+
+With `toString()` function will create a denied filter string object as below:
+
+```
+isNotNullFilter.toString();
+
+not(and(eq(id,1),contains(label,test)))
+```
+
