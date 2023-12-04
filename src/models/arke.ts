@@ -15,7 +15,12 @@
  */
 
 import Base from "./base";
-import { THttpClientInstance, TResponse, TTopology } from "../types";
+import {
+  THttpClientInstance,
+  TRequestConfig,
+  TResponse,
+  TTopology,
+} from "../types";
 
 export default class Arke extends Base {
   protected declare httpClient: THttpClientInstance;
@@ -43,6 +48,22 @@ export default class Arke extends Base {
       arkeId: parameterType,
       id: parameterId,
     });
+  }
+
+  /**
+   * Edit an associated Parameter
+   */
+  editParameter(
+    arkeId: string,
+    parameterId: string,
+    data: { metadata: Record<string, unknown> },
+    config?: TRequestConfig
+  ) {
+    return this.httpClient.put(
+      `/${arkeId}/parameter/${parameterId}`,
+      data,
+      config
+    );
   }
 
   /**
