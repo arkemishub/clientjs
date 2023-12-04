@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/arkemishub/clientjs/compare/v2.7.0...v2.8.0) (2023-12-04)
+
+
+### Features
+
+* add editParameter method ([#35](https://github.com/arkemishub/clientjs/issues/35)) ([0376364](https://github.com/arkemishub/clientjs/commit/0376364d41e48de56106e797d0192daec9389ede))
+
 # [2.7.0](https://github.com/arkemishub/clientjs/compare/v2.6.2...v2.7.0) (2023-11-17)
 
 
