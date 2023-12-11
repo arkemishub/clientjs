@@ -21,8 +21,10 @@ import {
   TResponse,
   TTopology,
 } from "../types";
+import CustomFunction from "./custom_function";
 
 export default class Arke extends Base {
+  fn: CustomFunction;
   protected declare httpClient: THttpClientInstance;
   /**
    * @param params
@@ -34,6 +36,7 @@ export default class Arke extends Base {
     arke: string;
   }) {
     super({ httpClient, arke: "arke" });
+    this.fn = new CustomFunction({ httpClient });
   }
 
   /**
