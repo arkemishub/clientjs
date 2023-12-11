@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/arkemishub/clientjs/compare/v2.8.0...v2.9.0) (2023-12-11)
+
+
+### Features
+
+* add arke custom function support ([#36](https://github.com/arkemishub/clientjs/issues/36)) ([596e97c](https://github.com/arkemishub/clientjs/commit/596e97ca3d8ccb140349e7515d1e388d723f73dc))
+
 # [2.8.0](https://github.com/arkemishub/clientjs/compare/v2.7.0...v2.8.0) (2023-12-04)
 
 
