@@ -24,10 +24,12 @@ import {
   TUnitOptions,
 } from "../types";
 import Topology from "./topology";
+import { CustomUnitFunction } from "./custom_function";
 
 export default class Unit {
   protected httpClient: THttpClientInstance;
   topology: Topology;
+  fn: CustomUnitFunction;
 
   /**
    * @param params
@@ -35,6 +37,7 @@ export default class Unit {
   constructor({ httpClient }: TUnitOptions) {
     this.httpClient = httpClient;
     this.topology = new Topology({ httpClient });
+    this.fn = new CustomUnitFunction({ httpClient });
   }
 
   /**
