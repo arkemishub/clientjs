@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/arkemishub/clientjs/compare/v2.9.0...v2.9.1) (2023-12-13)
+
+
+### Bug Fixes
+
+* remove console error for React Native ([#37](https://github.com/arkemishub/clientjs/issues/37)) ([ee79674](https://github.com/arkemishub/clientjs/commit/ee79674942918b10ed8da22be2d868b3b55655fe))
+
 # [2.9.0](https://github.com/arkemishub/clientjs/compare/v2.8.0...v2.9.0) (2023-12-11)
 
 
