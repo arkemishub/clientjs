@@ -1,81 +1,49 @@
-# Turborepo starter
+# @arkejs/client
 
-This is an official starter Turborepo.
+<img width="2298" alt="Client" src="https://user-images.githubusercontent.com/81776297/233085001-f466fabc-3e07-41e0-b20c-c8cce58f0eb0.png">
 
-## Using this example
+[![License](https://img.shields.io/badge/license-Apache2.0-blue.svg)](https://github.com/arkemishub/arke-monorepo/blob/master/LICENSE.txt)
 
-Run the following command:
+An isomorphic JavaScript client for Arke backend connection
 
-```sh
-npx create-turbo@latest
+## Usage
+
+First of all, you need to install the library:
+
+```shell
+npm install @arkejs/client
+pnpm install @arkejs/client
 ```
 
-## What's inside?
+Then you're able to import the library and establish the connection with the database:
 
-This Turborepo includes the following packages/apps:
+```tsx
+import Client from '@arkejs/client'
 
-### Apps and Packages
+// Create a single arke js for interacting with your server
+const client = new Client({ 
+    serverUrl: 'http://localhost:4000',
+    project: 'PROJECT_NAME',
+})
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+client.arke.get('my_arke').then(
+  res => console.log(res.data),
+  err => console.error(err.response.data)
+)
 ```
 
-### Develop
+When you initialize the client you can define custom methods to get the Auth session:
 
-To develop all apps and packages, run the following command:
-
+```tsx
+const client = new Client({
+    serverUrl: 'http://localhost:4000',
+    project: 'PROJECT_NAME',
+    getSession: async () => {
+      const session = await AsyncStorage.getItem('@session');
+      return session;
+    },
+    setSession: async session => {
+      await AsyncStorage.setItem('@session', JSON.stringify(session.content));
+    },
+  });
 ```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)

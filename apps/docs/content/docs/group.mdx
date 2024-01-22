@@ -1,0 +1,25 @@
+---
+title: Group
+---
+
+The Group class provides useful methods to manage Group and its associated parameters.
+
+```shell
+client.group.[method]
+```
+
+
+| **Method**                          | **Description**                       |
+|-------------------------------------|---------------------------------------|
+| baseStruct(config)                  | Get the structure of generic Group    |
+| getAll(config)                      | Get All Groups                        |
+| get(groupId, config)                | Get specific Group                    |
+| struct(groupId, config)             | Get the structure of a specific Group |
+| create(groupId, data, config)       | Create a Group with data              |
+| edit(groupId, data, config)         | Edit a specific Group data            |
+| delete(groupId, config)             | Delete a specific Group               |
+| addArke(groupId, arkeId, config)    | Add an Arke to Group                  |
+| removeArke(groupId, arkeId, config) | Remove an Arke to Group               |
+| getAllArke(groupId, config)         | Get all Arke from a Group             |
+| getUnit(groupId, unitId, config)    | Get groups related Units              |
+| getAllUnits(groupId, config)        | Get all Units from a Group            |

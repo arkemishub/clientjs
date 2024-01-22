@@ -1,0 +1,21 @@
+---
+title: Arke
+---
+
+The arke class provides useful methods to manage Arke and its associated parameters.
+
+```shell
+client.arke.[method]
+```
+
+| **Method**                                                  | **Description**                      |
+|-------------------------------------------------------------|--------------------------------------|
+| baseStruct(config)                                          | Get the structure of generic Arke    |
+| getAll(config)                                              | Get All Arke                         |
+| get(arkeId, config)                                         | Get specific Arke                    |
+| struct(arkeId, config)                                      | Get the structure of a specific Arke |
+| create(arkeId, data, config)                                | Create an Arke with data             |
+| edit(arkeId, data, config)                                  | Edit a specific Arke                 |
+| delete(arkeId, config)                                      | Delete a specific Arke               |
+| addParameter(arkeId, parameterType, parameterId, config)    | Add parameter to an Arke             |
+| removeParameter(arkeId, parameterType, parameterId, config) | Remove parameter to an Arke          |

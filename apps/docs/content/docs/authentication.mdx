@@ -1,0 +1,45 @@
+---
+title: Authentication
+---
+
+The auth class provides useful methods to authenticate, and manage the security of the APIs through the JWT authentication.
+
+### Sign in
+
+```js
+client.auth
+    .signIn({ username: 'username', password: 'password' })
+    .then((res) => {
+        const session = res.data.content;
+        client.auth.setAuthCookie(session);
+    })
+    .catch((err) => console.log(err));
+```
+
+### Verify & Refresh token
+
+To validate our session you have to call the verify token API to check that session is still alive,
+otherwise it will be necessary call the refresh token API to generate new token.
+
+```js
+ client.auth
+    .verifyToken(verifyToken)
+    .then((res) => {
+        // Token is verified
+    })
+    .catch((err) => {
+        // Token is expired -> try to refresh token
+        client.auth
+            .refreshToken(refresh_token)
+            .then((res) => {
+                const refreshedToken = res.data;
+                console.log(refreshedToken)
+            })
+            .catch((err) => {
+                // Logout session
+                console.log(err)
+            });
+    })
+```
+
+Looks our guides to use Arke authentication through [NextAuth.js](https://next-auth.js.org/)

@@ -1,0 +1,19 @@
+---
+title: Api
+---
+
+The api class provides an [Axios instance](https://axios-http.com/) useful for custom Api call where specific method is
+not available.
+
+Generic HTTP methods are available: GET, POST, PATCH, DELETE, etc.
+
+### Examples
+
+```js
+  client.api
+    .post('/custom-endpoint', { data: 'value'})
+    .then((res) => {
+        // manage response
+    })
+    .catch((err) => console.log(err));
+```

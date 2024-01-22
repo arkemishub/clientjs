@@ -1,4 +1,10 @@
+const { withContentlayer } = require("next-contentlayer");
+
 /** @type {import('next').NextConfig} */
-module.exports = {
-  transpilePackages: ["@repo/ui"],
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  output: "standalone",
 };
+
+module.exports = withContentlayer(nextConfig);
