@@ -46,31 +46,31 @@ export default class Group extends Base {
   /**
    * Get groups related Arke list
    */
-  getAllArke(
+  getAllArke<T = TUnit>(
     groupId: string,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit, true>> {
+  ): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/group/${groupId}/arke`, config);
   }
 
   /**
    * Get groups related Units
    */
-  getAllUnits(
+  getAllUnits<T = TUnit>(
     groupId: string,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit, true>> {
+  ): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/group/${groupId}/unit`, config);
   }
 
   /**
    * Get groups related Units
    */
-  getUnit(
+  getUnit<T = TUnit>(
     groupId: string,
     unitId: string,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit>> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.get(`/group/${groupId}/unit/${unitId}`, config);
   }
 

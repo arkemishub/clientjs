@@ -46,56 +46,56 @@ export default class Base {
   /**
    * Creates
    */
-  create(
+  create<T = TUnit>(
     data: TRequestData,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit>> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.post(`/${this.arke}/unit`, data, config);
   }
 
   /**
    * Gets the base struct
    */
-  baseStruct(config?: TRequestConfig): Promise<TResponse<TStruct>> {
+  baseStruct<T = TStruct>(config?: TRequestConfig): Promise<TResponse<T>> {
     return this.httpClient.get(`/${this.arke}/struct`, config);
   }
 
   /**
    * Gets the struct
    */
-  struct(id: string, config?: TRequestConfig): Promise<TResponse<TStruct>> {
+  struct<T = TStruct>(id: string, config?: TRequestConfig): Promise<TResponse<TStruct>> {
     return this.httpClient.get(`/${id}/struct`, config);
   }
 
   /**
    * Get detail
    */
-  get(id: string, config?: TRequestConfig): Promise<TResponse<TUnit>> {
+  get<T = TUnit>(id: string, config?: TRequestConfig): Promise<TResponse<T>> {
     return this.httpClient.get(`/${this.arke}/unit/${id}`, config);
   }
 
   /**
    * Edits an Arke
    */
-  edit(
+  edit<T = TUnit>(
     id: string,
     data: TRequestData,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit>> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.put(`/${this.arke}/unit/${id}`, data, config);
   }
 
   /**
    * Deletes an Arke
    */
-  delete(id: string, config?: TRequestConfig): Promise<TResponse> {
+  delete<T = TUnit>(id: string, config?: TRequestConfig): Promise<T> {
     return this.httpClient.delete(`/${this.arke}/unit/${id}`, config);
   }
 
   /**
    * GetAll details
    */
-  getAll(config?: TRequestConfig): Promise<TResponse<TUnit, true>> {
+  getAll<T = TUnit>(config?: TRequestConfig): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/${this.arke}/unit`, config);
   }
 }

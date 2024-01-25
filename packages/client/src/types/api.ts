@@ -17,6 +17,7 @@
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 type THttpClientInstance = AxiosInstance;
+type TGenericResponse = AxiosResponse;
 
 type TRequestData = Record<string, unknown> | FormData;
 
@@ -27,4 +28,4 @@ type TResponse<Data = any, Multiple = false> = AxiosResponse<{
   messages: Record<string, unknown>[];
 }>;
 
-export type { THttpClientInstance, TRequestData, TRequestConfig, TResponse };
+export type { THttpClientInstance, TRequestData, TRequestConfig, TResponse, TGenericResponse };
