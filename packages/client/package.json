@@ -1,6 +1,6 @@
 {
   "name": "@arkejs/client",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "description": "An isomorphic JavaScript client for Arke backend connection.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
