@@ -54,11 +54,11 @@ export default class Unit {
   /**
    * Get Unit's detail
    */
-  get(
+  get<T = TUnit>(
     arkeId: string,
     id: string,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit>> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.get(`/${arkeId}/unit/${id}`, config);
   }
 
@@ -100,10 +100,10 @@ export default class Unit {
   /**
    * GetAll details
    */
-  getAll(
+  getAll<T = TUnit>(
     arkeId: string,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit, true>> {
+  ): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/${arkeId}/unit`, config);
   }
 
