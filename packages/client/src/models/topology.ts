@@ -51,12 +51,14 @@ export default class Topology {
    * Get all links related to a Unit by direction
    */
   getLinks(
-    parent: Parent,
+    parentOrChild: Parent,
     direction?: LinkDirection,
     config?: TRequestConfig
   ): Promise<TResponse<TUnit, true>> {
     return this.httpClient.get(
-      `/${this.getParent(parent)}/unit/${parent.id}/link/${direction}`,
+      `/${this.getParent(parentOrChild)}/unit/${
+        parentOrChild.id
+      }/link/${direction}`,
       config
     );
   }
