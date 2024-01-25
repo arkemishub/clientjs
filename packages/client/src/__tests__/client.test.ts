@@ -18,7 +18,7 @@ import Client from "../client/client";
 import Arke from "../models/arke";
 import mockAxios from "axios";
 import { HTTPStatusCode } from "../network/api/lib/HTTPStatusCode";
-import { LinkDirection } from "../types";
+import { LinkDirection, TUnit } from "../types";
 
 const client = new Client({
   serverUrl: "http://localhost:4000",
@@ -36,6 +36,9 @@ const PARAMETER_ID = "name";
 const sampleUnitData = { name: "Luke", surname: "Skywalker" };
 const sampleArkeData = { id: "Jedi" };
 
+interface TUnitExtended extends TUnit {
+  additionalParameter: string;
+}
 describe("Client", () => {
   it("should create client properly", async () => {
     expect(client.auth).toBeDefined();
@@ -119,6 +122,16 @@ describe("Client", () => {
 
     await client.unit.getAll(ARKE_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(`/${ARKE_ID}/unit`, undefined);
+  });
+
+  it("should call GET with dynamic types without types check problems", async () => {
+    jest.spyOn(mockAxios, "get").mockResolvedValue({
+      status: HTTPStatusCode.Success,
+      data: { content: { items: [sampleUnitData, sampleUnitData] } },
+    });
+
+    await client.unit.get<TUnitExtended>(ARKE_ID, UNIT_ID);
+    await client.unit.getAll<TUnitExtended>(ARKE_ID);
   });
 
   it("should arke addParameter properly", async () => {
