@@ -43,11 +43,11 @@ export default class Unit {
   /**
    * Creates a Unit
    */
-  create(
+  create<T = TUnit>(
     arkeId: string,
     data: TRequestData,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit>> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.post(`/${arkeId}/unit`, data, config);
   }
 
@@ -66,12 +66,12 @@ export default class Unit {
    * Edits a Unit
    */
 
-  edit(
+  edit<T = TUnit>(
     arkeId: string,
     id: string,
     data: TRequestData,
     config?: TRequestConfig
-  ): Promise<TResponse<TUnit>> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.put(`/${arkeId}/unit/${id}`, data, config);
   }
 
@@ -110,7 +110,7 @@ export default class Unit {
   /**
    * GetAll details
    */
-  search(config?: TRequestConfig): Promise<TResponse<TUnit, true>> {
+  search<T = TUnit>(config?: TRequestConfig): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/unit`, config);
   }
 }
