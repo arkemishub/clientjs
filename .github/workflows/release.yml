@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build package
-        run: pnpm build --filter=@arkejs/table
+        run: pnpm build --filter=@arkejs/client
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
