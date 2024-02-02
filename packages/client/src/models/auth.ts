@@ -49,9 +49,8 @@ export default class Auth {
    */
   async signIn(
     { username, password }: { username: string; password: string },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     method?: "credentials",
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<AxiosResponse> {
     return this.httpClient
       .post(
@@ -60,7 +59,7 @@ export default class Auth {
           username,
           password,
         },
-        config
+        config,
       )
       .then((res) => {
         try {
@@ -80,8 +79,7 @@ export default class Auth {
    */
   async signUp(
     data: TSignUpOptions,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    method?: "credentials"
+    method?: "credentials",
   ): Promise<AxiosResponse> {
     return this.httpClient.post("/auth/signup", data);
   }
@@ -91,7 +89,7 @@ export default class Auth {
    * @param access_token
    */
   async verifyToken(
-    access_token: TToken["access_token"]
+    access_token: TToken["access_token"],
   ): Promise<AxiosResponse | undefined> {
     return this.httpClient.post(
       "/auth/verify",
@@ -100,7 +98,7 @@ export default class Auth {
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
-      }
+      },
     );
   }
 
@@ -109,7 +107,7 @@ export default class Auth {
    * @param refresh_token
    */
   async refreshToken(
-    refresh_token: TToken["refresh_token"]
+    refresh_token: TToken["refresh_token"],
   ): Promise<AxiosResponse> {
     return this.httpClient.post(
       "/auth/refresh",
@@ -118,7 +116,7 @@ export default class Auth {
         headers: {
           Authorization: `Bearer ${refresh_token}`,
         },
-      }
+      },
     );
   }
 
@@ -129,7 +127,7 @@ export default class Auth {
    */
   async changePassword(
     old_password: string,
-    password: string
+    password: string,
   ): Promise<AxiosResponse> {
     return this.httpClient.post("/auth/change_password", {
       old_password,
@@ -154,7 +152,7 @@ export default class Auth {
    */
   async resetPassword(
     new_password: string,
-    token: string
+    token: string,
   ): Promise<AxiosResponse> {
     return this.httpClient.post(`/auth/reset_password/${token}`, {
       new_password,

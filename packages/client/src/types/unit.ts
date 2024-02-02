@@ -20,7 +20,16 @@ type TUnitOptions = {
   httpClient: AxiosInstance;
 };
 
-type TUnit = {
+type UnitLinkDetail<T> = T extends true
+  ? {
+      link: {
+        metadata: Record<string, unknown>;
+        depth: number;
+      };
+    }
+  : {};
+
+type TUnit<WithLink extends boolean = false> = {
   active: boolean;
   arke_id?: string;
   configuration?: Record<string, unknown>;
@@ -29,6 +38,7 @@ type TUnit = {
   label?: string;
   type?: string; // should be an enum
   updated_at?: string;
-} & Record<string, unknown>;
+} & Record<string, unknown> &
+  UnitLinkDetail<WithLink>;
 
 export type { TUnitOptions, TUnit };
