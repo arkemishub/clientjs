@@ -1,5 +1,11 @@
 # @arkejs/client
 
+## 2.9.5
+
+### Patch Changes
+
+- 5d795df: feat: add editLink method to topology
+
 ## 2.9.4
 
 ### Patch Changes
