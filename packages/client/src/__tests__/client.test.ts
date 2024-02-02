@@ -71,7 +71,7 @@ describe("Client", () => {
     expect(mockAxios.post).toHaveBeenCalledWith(
       `/arke/unit`,
       sampleArkeData,
-      undefined
+      undefined,
     );
   });
 
@@ -84,7 +84,7 @@ describe("Client", () => {
     await client.arke.get(ARKE_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/arke/unit/${ARKE_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -98,7 +98,7 @@ describe("Client", () => {
     expect(mockAxios.put).toHaveBeenCalledWith(
       `/arke/unit/${ARKE_ID}`,
       sampleArkeData,
-      undefined
+      undefined,
     );
   });
 
@@ -110,7 +110,7 @@ describe("Client", () => {
     await client.arke.delete(ARKE_ID);
     expect(mockAxios.delete).toHaveBeenCalledWith(
       `/arke/unit/${ARKE_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -140,10 +140,13 @@ describe("Client", () => {
       data: {},
     });
 
-    await client.arke.addParameter(ARKE_ID, PARAMETER_TYPE, PARAMETER_ID);
+    await client.arke.addParameter(ARKE_ID, PARAMETER_TYPE, PARAMETER_ID, {
+      metadata: { test: true },
+    });
     expect(mockAxios.post).toHaveBeenCalledWith(
       `/arke/unit/${ARKE_ID}/link/parameter/${PARAMETER_TYPE}/unit/${PARAMETER_ID}`,
-      undefined
+      { metadata: { test: true } },
+      undefined,
     );
   });
 
@@ -156,7 +159,7 @@ describe("Client", () => {
     await client.arke.removeParameter(ARKE_ID, PARAMETER_TYPE, PARAMETER_ID);
     expect(mockAxios.delete).toHaveBeenCalledWith(
       `/arke/unit/${ARKE_ID}/link/parameter/${PARAMETER_TYPE}/unit/${PARAMETER_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -170,7 +173,7 @@ describe("Client", () => {
     expect(mockAxios.post).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit`,
       sampleUnitData,
-      undefined
+      undefined,
     );
   });
 
@@ -184,7 +187,7 @@ describe("Client", () => {
     expect(mockAxios.put).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}`,
       sampleUnitData,
-      undefined
+      undefined,
     );
   });
 
@@ -196,7 +199,7 @@ describe("Client", () => {
     await client.unit.delete(ARKE_ID, UNIT_ID);
     expect(mockAxios.delete).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -209,7 +212,7 @@ describe("Client", () => {
     await client.unit.get(ARKE_ID, UNIT_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -232,7 +235,7 @@ describe("Client", () => {
     await client.unit.struct(ARKE_ID, UNIT_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}/struct`,
-      undefined
+      undefined,
     );
   });
 
@@ -245,7 +248,7 @@ describe("Client", () => {
     await client.group.struct(GROUP_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/group/${GROUP_ID}/struct`,
-      undefined
+      undefined,
     );
   });
 
@@ -258,7 +261,7 @@ describe("Client", () => {
     await client.group.getAllArke(GROUP_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/group/${GROUP_ID}/arke`,
-      undefined
+      undefined,
     );
   });
 
@@ -271,7 +274,7 @@ describe("Client", () => {
     await client.group.getAllUnits(GROUP_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/group/${GROUP_ID}/unit`,
-      undefined
+      undefined,
     );
   });
 
@@ -284,7 +287,7 @@ describe("Client", () => {
     await client.group.getUnit(GROUP_ID, UNIT_ID);
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/group/${GROUP_ID}/unit/${UNIT_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -297,7 +300,8 @@ describe("Client", () => {
     await client.group.addArke(GROUP_ID, ARKE_ID);
     expect(mockAxios.post).toHaveBeenCalledWith(
       `/group/unit/${GROUP_ID}/link/group/arke/unit/${ARKE_ID}`,
-      undefined
+      undefined,
+      undefined,
     );
   });
 
@@ -310,7 +314,7 @@ describe("Client", () => {
     await client.group.removeArke(GROUP_ID, ARKE_ID);
     expect(mockAxios.delete).toHaveBeenCalledWith(
       `/group/unit/${GROUP_ID}/link/group/arke/unit/${ARKE_ID}`,
-      undefined
+      undefined,
     );
   });
 
@@ -322,11 +326,11 @@ describe("Client", () => {
 
     await client.arke.topology.getLinks(
       { arkeId: ARKE_ID, id: UNIT_ID },
-      LinkDirection.Child
+      LinkDirection.Child,
     );
     expect(mockAxios.get).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}/link/child`,
-      undefined
+      undefined,
     );
   });
 
@@ -339,11 +343,13 @@ describe("Client", () => {
     await client.arke.topology.addLink(
       { arkeId: ARKE_ID, id: UNIT_ID },
       "owner",
-      { arkeId: ARKE_ID_2, id: UNIT_ID_2 }
+      { arkeId: ARKE_ID_2, id: UNIT_ID_2 },
+      { metadata: { test: true } },
     );
     expect(mockAxios.post).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}/link/owner/${ARKE_ID_2}/unit/${UNIT_ID_2}`,
-      undefined
+      { metadata: { test: true } },
+      undefined,
     );
   });
 
@@ -356,11 +362,11 @@ describe("Client", () => {
     await client.arke.topology.deleteLink(
       { arkeId: ARKE_ID, id: UNIT_ID },
       "owner",
-      { arkeId: ARKE_ID_2, id: UNIT_ID_2 }
+      { arkeId: ARKE_ID_2, id: UNIT_ID_2 },
     );
     expect(mockAxios.delete).toHaveBeenCalledWith(
       `/${ARKE_ID}/unit/${UNIT_ID}/link/owner/${ARKE_ID_2}/unit/${UNIT_ID_2}`,
-      undefined
+      undefined,
     );
   });
 });
