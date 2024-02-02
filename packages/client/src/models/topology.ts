@@ -71,12 +71,14 @@ export default class Topology {
     parent: Parent,
     linkId: string,
     child: Child,
+    data?: TRequestData,
     config?: TRequestConfig,
   ): Promise<TResponse<TTopology>> {
     return this.httpClient.post(
       `/${this.getParent(parent)}/unit/${
         parent.id
       }/link/${linkId}/${this.getChild(child)}/unit/${child.id}`,
+      data,
       config,
     );
   }

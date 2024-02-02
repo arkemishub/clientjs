@@ -18,6 +18,7 @@ import Base from "./base";
 import {
   THttpClientInstance,
   TRequestConfig,
+  TRequestData,
   TResponse,
   TTopology,
 } from "../types";
@@ -45,12 +46,18 @@ export default class Arke extends Base {
   addParameter(
     arkeId: string,
     parameterType: string,
-    parameterId: string
+    parameterId: string,
+    data?: TRequestData,
   ): Promise<TResponse<TTopology>> {
-    return this.topology.addLink({ arkeId: "arke", id: arkeId }, "parameter", {
-      arkeId: parameterType,
-      id: parameterId,
-    });
+    return this.topology.addLink(
+      { arkeId: "arke", id: arkeId },
+      "parameter",
+      {
+        arkeId: parameterType,
+        id: parameterId,
+      },
+      data,
+    );
   }
 
   /**
@@ -60,12 +67,12 @@ export default class Arke extends Base {
     arkeId: string,
     parameterId: string,
     data: { metadata: Record<string, unknown> },
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ) {
     return this.httpClient.put(
       `/${arkeId}/parameter/${parameterId}`,
       data,
-      config
+      config,
     );
   }
 
@@ -75,7 +82,7 @@ export default class Arke extends Base {
   removeParameter(
     arkeId: string,
     parameterType: string,
-    parameterId: string
+    parameterId: string,
   ): Promise<TResponse> {
     return this.topology.deleteLink(
       { arkeId: "arke", id: arkeId },
@@ -83,7 +90,7 @@ export default class Arke extends Base {
       {
         arkeId: parameterType,
         id: parameterId,
-      }
+      },
     );
   }
 }
