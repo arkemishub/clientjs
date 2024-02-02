@@ -18,6 +18,7 @@ import {
   LinkDirection,
   THttpClientInstance,
   TRequestConfig,
+  TRequestData,
   TResponse,
   TTopology,
   TUnit,
@@ -50,16 +51,16 @@ export default class Topology {
   /**
    * Get all links related to a Unit by direction
    */
-  getLinks<T = TUnit>(
+  getLinks<T = TUnit<true>>(
     parentOrChild: Parent,
     direction?: LinkDirection,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T, true>> {
     return this.httpClient.get(
       `/${this.getParent(parentOrChild)}/unit/${
         parentOrChild.id
       }/link/${direction}`,
-      config
+      config,
     );
   }
 
@@ -70,30 +71,51 @@ export default class Topology {
     parent: Parent,
     linkId: string,
     child: Child,
-    config?: TRequestConfig
+    data?: TRequestData,
+    config?: TRequestConfig,
   ): Promise<TResponse<TTopology>> {
     return this.httpClient.post(
       `/${this.getParent(parent)}/unit/${
         parent.id
       }/link/${linkId}/${this.getChild(child)}/unit/${child.id}`,
-      config
+      data,
+      config,
     );
   }
 
   /**
-   * Creates a new link between 2 entities
+   * Edits a link
+   */
+  editLink(
+    parent: Parent,
+    linkId: string,
+    child: Child,
+    data: TRequestData,
+    config?: TRequestConfig,
+  ): Promise<TResponse<TTopology>> {
+    return this.httpClient.put(
+      `/${this.getParent(parent)}/unit/${
+        parent.id
+      }/link/${linkId}/${this.getChild(child)}/unit/${child.id}`,
+      data,
+      config,
+    );
+  }
+
+  /**
+   * Deletes a link
    */
   deleteLink(
     parent: Parent,
     linkId: string,
     child: Child,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse> {
     return this.httpClient.delete(
       `/${this.getParent(parent)}/unit/${
         parent.id
       }/link/${linkId}/${this.getChild(child)}/unit/${child.id}`,
-      config
+      config,
     );
   }
 }
