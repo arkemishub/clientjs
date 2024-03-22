@@ -1,6 +1,6 @@
 # @arkejs/client
 
-<img width="2298" alt="Client" src="https://user-images.githubusercontent.com/81776297/233085001-f466fabc-3e07-41e0-b20c-c8cce58f0eb0.png">
+![Client](https://github.com/arkemishub/clientjs/assets/81776297/cf43c6aa-e219-48e3-9c7c-eb4e1ff56225)
 
 [![License](https://img.shields.io/badge/license-Apache2.0-blue.svg)](https://github.com/arkemishub/arke-monorepo/blob/master/LICENSE.txt)
 
