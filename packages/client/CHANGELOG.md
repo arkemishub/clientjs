@@ -1,5 +1,11 @@
 # @arkejs/client
 
+## 2.9.6
+
+### Patch Changes
+
+- 5534dc1: remove error log for sessios
+
 ## 2.9.5
 
 ### Patch Changes
