@@ -52,8 +52,6 @@ class HttpClient {
 
           if (session) {
             config.headers.Authorization = `Bearer ${session?.access_token}`;
-          } else {
-            console.error("Session not found");
           }
         }
         if (project && config.headers && !config.headers["Arke-Project-Key"])
