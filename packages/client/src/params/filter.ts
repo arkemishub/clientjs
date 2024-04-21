@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+// todo: better type management
 interface RelationalOperator {
   (left: string, right: string | number | boolean): string;
 }
