@@ -15,6 +15,21 @@
  */
 
 import { ConditionalOperator, Filter, RelationalOperator } from "../index";
+import {describe} from "node:test";
+import {
+    and,
+    contains,
+    endswith,
+    eq,
+    gt,
+    gte,
+    icontains,
+    iendswith, inArray, isNull,
+    istartswith,
+    lt,
+    lte, not, or,
+    startswith
+} from "../params/filter";
 
 const mockRelationalFilter = new Filter({
   operator: RelationalOperator.CONTAINS,
@@ -88,3 +103,97 @@ describe("Filter", () => {
     expect(mockConditionalEmptyFilter.getLength()).toBe(0);
   });
 });
+
+describe("param filters", () => {
+  it('eq', () => {
+    expect(eq('test', 1)).toBe('eq(test,1)')
+    expect(eq('test', '1')).toBe('eq(test,1)')
+    expect(eq('test',  true)).toBe('eq(test,true)')
+  })
+
+    it('contains', () => {
+        expect(contains('test', 1)).toBe('contains(test,1)')
+        expect(contains('test', '1')).toBe('contains(test,1)')
+        expect(contains('test',  true)).toBe('contains(test,true)')
+    })
+
+    it('icontains', () => {
+        expect(icontains('test', 1)).toBe('icontains(test,1)')
+        expect(icontains('test', '1')).toBe('icontains(test,1)')
+        expect(icontains('test',  true)).toBe('icontains(test,true)')
+    })
+
+    it('startswith', () => {
+        expect(startswith('test', 1)).toBe('startswith(test,1)')
+        expect(startswith('test', '1')).toBe('startswith(test,1)')
+        expect(startswith('test',  true)).toBe('startswith(test,true)')
+    })
+
+    it('istartswith', () => {
+        expect(istartswith('test', 1)).toBe('istartswith(test,1)')
+        expect(istartswith('test', '1')).toBe('istartswith(test,1)')
+        expect(istartswith('test',  true)).toBe('istartswith(test,true)')
+    })
+
+    it('endswith', () => {
+        expect(endswith('test', 1)).toBe('endswith(test,1)')
+        expect(endswith('test', '1')).toBe('endswith(test,1)')
+        expect(endswith('test',  true)).toBe('endswith(test,true)')
+    })
+
+    it('iendswith', () => {
+        expect(iendswith('test', 1)).toBe('iendswith(test,1)')
+        expect(iendswith('test', '1')).toBe('iendswith(test,1)')
+        expect(iendswith('test',  true)).toBe('iendswith(test,true)')
+    })
+
+    it('lte', () => {
+        expect(lte('test', 1)).toBe('lte(test,1)')
+        expect(lte('test', '1')).toBe('lte(test,1)')
+        expect(lte('test',  true)).toBe('lte(test,true)')
+    })
+
+    it('lt', () => {
+        expect(lt('test', 1)).toBe('lt(test,1)')
+        expect(lt('test', '1')).toBe('lt(test,1)')
+        expect(lt('test',  true)).toBe('lt(test,true)')
+    })
+
+    it('gte', () => {
+        expect(gte('test', 1)).toBe('gte(test,1)')
+        expect(gte('test', '1')).toBe('gte(test,1)')
+        expect(gte('test',  true)).toBe('gte(test,true)')
+    })
+
+    it('gt', () => {
+        expect(gt('test', 1)).toBe('gt(test,1)')
+        expect(gt('test', '1')).toBe('gt(test,1)')
+        expect(gt('test',  true)).toBe('gt(test,true)')
+    })
+
+    it('inArray', () => {
+        expect(inArray('test', 1)).toBe('in(test,1)')
+        expect(inArray('test', '1')).toBe('in(test,1)')
+        expect(inArray('test',  true)).toBe('in(test,true)')
+    })
+
+    it('isNull', () => {
+        expect(isNull('test')).toBe('isnull(test)')
+        expect(isNull('test')).toBe('isnull(test)')
+        expect(isNull('test')).toBe('isnull(test)')
+    })
+
+    it('not', () => {
+        expect(not('test')).toBe('not(test)')
+        expect(not('test')).toBe('not(test)')
+        expect(not('test')).toBe('not(test)')
+    })
+
+    it('and', () => {
+        expect(and(eq('test', 1), eq('test', 1))).toBe('and(eq(test,1),eq(test,1))')
+    })
+
+    it('or', () => {
+        expect(or(eq('test', 1), eq('test', 1))).toBe('or(eq(test,1),eq(test,1))')
+    })
+})

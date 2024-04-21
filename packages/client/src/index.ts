@@ -21,3 +21,4 @@ export * from "./types";
 export { default as Auth } from "./models/auth";
 export { default as Client } from "./client/client";
 export { default as Filter } from "./utils/filter";
+export * from './params'
