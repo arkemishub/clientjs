@@ -1,32 +1,30 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc",
   "root": true,
-  "parser": "@typescript-eslint/parser",
   "extends": [
-    "next/core-web-vitals",
     "turbo",
-    "plugin:mdx/recommended",
+    "prettier",
     "plugin:tailwindcss/recommended"
   ],
   "plugins": ["tailwindcss"],
   "rules": {
-  "@next/next/no-html-link-for-pages": "off",
-    "tailwindcss/no-custom-classname": "off"
+    "@next/next/no-html-link-for-pages": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "error"
   },
   "settings": {
-  "next": {
-    "rootDir": ["apps/*/"]
-  },
-  "mdx/code-blocks": true,
-      "mdx/language-mapper": {}
+    "tailwindcss": {
+      "callees": ["cn", "cva"],
+      "config": "tailwind.config.cjs"
+    },
+    "next": {
+      "rootDir": ["apps/*/"]
+    }
   },
   "overrides": [
     {
-      "files": ["*.mdx"],
-      "extends": ["plugin:mdx/overrides"],
-      "rules": {
-        "react/jsx-no-undef": "off"
-      }
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
     }
   ]
 }

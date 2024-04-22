@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
+    "test": "turbo test",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "pub:beta": "cd packages/cli && pnpm pub:beta",
@@ -14,6 +15,7 @@
     "@types/node": "^20.10.7",
     "changeset": "^0.2.6",
     "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "^1.11.3",
     "eslint-plugin-mdx": "^2.1.0",
     "eslint-plugin-react": "^7.33.2",
