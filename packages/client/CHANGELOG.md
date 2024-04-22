@@ -1,5 +1,11 @@
 # @arkejs/client
 
+## 2.10.0
+
+### Minor Changes
+
+- 011d65e: feat: add filter functions
+
 ## 2.9.6
 
 ### Patch Changes
