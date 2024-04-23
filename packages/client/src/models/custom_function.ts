@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { THttpClientInstance, TRequestConfig, TResponse } from "../types";
+import {THttpClientInstance, TRequestConfig, TResponse, TUnit} from "../types";
 
 export class CustomArkeFunction {
   protected declare httpClient: THttpClientInstance;
@@ -26,23 +26,23 @@ export class CustomArkeFunction {
   /**
    * Call a custom function with GET method
    */
-  get(
+  get<T = TUnit>(
     arkeID: string,
     functionName: string,
     config?: TRequestConfig
-  ): Promise<TResponse> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.get(`/${arkeID}/function/${functionName}`, config);
   }
 
   /**
    * Call a custom function with POST method
    */
-  post(
+  post<T = TUnit>(
     arkeID: string,
     functionName: string,
     data: unknown,
     config?: TRequestConfig
-  ): Promise<TResponse> {
+  ): Promise<TResponse<T>> {
     return this.httpClient.post(
       `/${arkeID}/function/${functionName}`,
       data,
