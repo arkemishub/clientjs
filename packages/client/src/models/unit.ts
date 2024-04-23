@@ -24,7 +24,7 @@ import {
   TUnitOptions,
 } from "../types";
 import Topology from "./topology";
-import { CustomUnitFunction } from "./custom_function";
+import { CustomUnitFunction } from "./custom-function";
 
 export default class Unit {
   protected httpClient: THttpClientInstance;
@@ -46,7 +46,7 @@ export default class Unit {
   create<T = TUnit>(
     arkeId: string,
     data: TRequestData,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T>> {
     return this.httpClient.post(`/${arkeId}/unit`, data, config);
   }
@@ -57,7 +57,7 @@ export default class Unit {
   get<T = TUnit>(
     arkeId: string,
     id: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T>> {
     return this.httpClient.get(`/${arkeId}/unit/${id}`, config);
   }
@@ -70,7 +70,7 @@ export default class Unit {
     arkeId: string,
     id: string,
     data: TRequestData,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T>> {
     return this.httpClient.put(`/${arkeId}/unit/${id}`, data, config);
   }
@@ -81,7 +81,7 @@ export default class Unit {
   delete(
     arkeId: string,
     id: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse> {
     return this.httpClient.delete(`/${arkeId}/unit/${id}`, config);
   }
@@ -92,7 +92,7 @@ export default class Unit {
   struct(
     arkeId: string,
     id: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<TStruct>> {
     return this.httpClient.get(`/${arkeId}/unit/${id}/struct`, config);
   }
@@ -102,7 +102,7 @@ export default class Unit {
    */
   getAll<T = TUnit>(
     arkeId: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/${arkeId}/unit`, config);
   }

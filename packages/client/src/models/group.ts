@@ -23,7 +23,7 @@ import {
   TUnit,
 } from "../types";
 import Base from "./base";
-import { CustomGroupFunction } from "./custom_function";
+import { CustomGroupFunction } from "./custom-function";
 
 export default class Group extends Base {
   fn: CustomGroupFunction;

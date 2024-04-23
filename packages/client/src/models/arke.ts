@@ -22,7 +22,7 @@ import {
   TResponse,
   TTopology,
 } from "../types";
-import { CustomArkeFunction } from "./custom_function";
+import { CustomArkeFunction } from "./custom-function";
 
 export default class Arke extends Base {
   fn: CustomArkeFunction;
