@@ -1,5 +1,12 @@
 # @arkejs/client
 
+## 2.10.1
+
+### Patch Changes
+
+- 2360a95: feat: add support for group custom fn
+- 0026d08: Extend function dynamic response types
+
 ## 2.10.0
 
 ### Minor Changes
