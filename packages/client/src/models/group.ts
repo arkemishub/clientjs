@@ -23,14 +23,18 @@ import {
   TUnit,
 } from "../types";
 import Base from "./base";
+import { CustomGroupFunction } from "./custom-function";
 
 export default class Group extends Base {
+  fn: CustomGroupFunction;
+
   protected declare httpClient: THttpClientInstance;
   /**
    * @param params
    */
   constructor({ httpClient }: { httpClient: THttpClientInstance }) {
     super({ httpClient, arke: "group" });
+    this.fn = new CustomGroupFunction({ httpClient });
   }
 
   /**
@@ -38,7 +42,7 @@ export default class Group extends Base {
    */
   struct(
     groupId: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<TStruct>> {
     return super.struct(`group/${groupId}`, config);
   }
@@ -48,7 +52,7 @@ export default class Group extends Base {
    */
   getAllArke<T = TUnit>(
     groupId: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/group/${groupId}/arke`, config);
   }
@@ -58,7 +62,7 @@ export default class Group extends Base {
    */
   getAllUnits<T = TUnit>(
     groupId: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T, true>> {
     return this.httpClient.get(`/group/${groupId}/unit`, config);
   }
@@ -69,7 +73,7 @@ export default class Group extends Base {
   getUnit<T = TUnit>(
     groupId: string,
     unitId: string,
-    config?: TRequestConfig
+    config?: TRequestConfig,
   ): Promise<TResponse<T>> {
     return this.httpClient.get(`/group/${groupId}/unit/${unitId}`, config);
   }
