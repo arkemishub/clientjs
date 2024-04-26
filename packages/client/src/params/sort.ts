@@ -14,5 +14,9 @@
  * limitations under the License.
  */
 
-export * from "./filter";
-export * from "./sort";
+interface SortOperator {
+  (field: string): string;
+}
+
+export const asc: SortOperator = (field: string) => `${field};asc`;
+export const desc: SortOperator = (field: string) => `${field};desc`;
