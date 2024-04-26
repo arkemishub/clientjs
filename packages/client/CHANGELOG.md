@@ -1,5 +1,11 @@
 # @arkejs/client
 
+## 2.11.0
+
+### Minor Changes
+
+- 0fd30e3: feat: add sort functions
+
 ## 2.10.1
 
 ### Patch Changes
