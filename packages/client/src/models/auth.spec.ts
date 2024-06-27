@@ -15,7 +15,6 @@
  */
 
 import { HTTPStatusCode } from "../network/api/lib/HTTPStatusCode";
-import { UserTypes } from "../types";
 import Client from "../client/client";
 import mockAxios from "axios";
 
@@ -24,6 +23,7 @@ const validResponse = {
 };
 
 const USERNAME = "developer";
+const EMAIL = "developer@arkehub.com";
 const PASSWORD = "pass";
 const TOKEN = "arke_token";
 const SERVER_URL = "http://localhost:4000";
@@ -77,10 +77,10 @@ describe("Auth", () => {
 
   it("should call signUp properly with valid response", async () => {
     jest.spyOn(mockAxios, "post").mockResolvedValue(validResponseWithData);
-    const res = await client.auth.signUp({
+    const res = await client.auth.signUp('member', {
       username: USERNAME,
+      email: EMAIL,
       password: PASSWORD,
-      type: UserTypes.SA,
     });
     expect(res.status).toEqual(HTTPStatusCode.OK);
   });
@@ -90,10 +90,10 @@ describe("Auth", () => {
       status: HTTPStatusCode.InternalServerError,
     });
     const res = await client.auth
-      .signUp({
+      .signUp('member', {
         username: USERNAME,
+        email: EMAIL,
         password: PASSWORD,
-        type: UserTypes.SA,
       })
       .catch((err) => err);
     expect(res).toEqual({ status: HTTPStatusCode.InternalServerError });
