@@ -23,9 +23,9 @@ type TToken = {
 
 type TSignUpOptions = TBaseUser & {
   email: string;
-  username: string;
+  username?: string;
   password: string;
-  arke_system_user: {
+  arke_system_user?: {
     email: string;
     username: string;
     password: string;
