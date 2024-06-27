@@ -22,7 +22,14 @@ type TToken = {
 };
 
 type TSignUpOptions = TBaseUser & {
+  email: string;
+  username: string;
   password: string;
+  arke_system_user: {
+    email: string;
+    username: string;
+    password: string;
+  }
 };
 type TSignUpResponseData = TBaseUser & TUnit;
 
