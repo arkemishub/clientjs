@@ -30,11 +30,6 @@
  * limitations under the License.
  */
 
-enum UserTypes {
-  C = "customer",
-  A = "admin",
-  SA = "super_admin",
-}
 
 type TBaseUser = {
   address?: string;
@@ -46,9 +41,7 @@ type TBaseUser = {
   last_login?: string;
   last_name?: string;
   phone_number?: string;
-  type: UserTypes;
   username: string;
 };
 
-export { UserTypes };
 export type { TBaseUser };

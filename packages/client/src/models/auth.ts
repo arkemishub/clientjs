@@ -90,14 +90,21 @@ export default class Auth {
 
   /**
    * Sign up a new user
+   * @param arkeId
    * @param data
    * @param method
    */
   async signUp(
+    arkeId: string,
     data: TSignUpOptions,
     method?: "credentials",
   ): Promise<AxiosResponse> {
-    return this.httpClient.post("/auth/signup", data);
+    data.arke_system_user = {
+      password: data.password,
+      username: data.username ?? data.email,
+      email: data.email,
+    }
+    return this.httpClient.post(`/auth/${arkeId}/signup`, data);
   }
 
   /**
