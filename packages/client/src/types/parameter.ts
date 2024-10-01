@@ -39,6 +39,7 @@ enum BaseParameter {
   Integer = "integer",
   String = "string",
   Time = "time",
+  Link = "link",
 }
 
 type TValues<T> = {
@@ -54,7 +55,7 @@ type TBaseParameter<
     | boolean
     | number
     | Record<string, unknown>
-    | unknown = unknown
+    | unknown = unknown,
 > = {
   label: string;
   id: string;
@@ -66,12 +67,12 @@ type TBaseParameter<
   Type extends string
   ? TString
   : Type extends boolean
-  ? TBool
-  : Type extends number
-  ? TNumber
-  : Type extends Record<string, unknown>
-  ? TJson
-  : Record<string, unknown>;
+    ? TBool
+    : Type extends number
+      ? TNumber
+      : Type extends Record<string, unknown>
+        ? TJson
+        : Record<string, unknown>;
 
 type TString = {
   max_length?: number;
