@@ -134,7 +134,7 @@ describe("Auth", () => {
       ...validResponse,
       data: { access_token: TOKEN, refresh_token: `r_${TOKEN}` },
     });
-    const res = await client.auth.refreshToken(TOKEN);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token');
     expect(res.status).toEqual(HTTPStatusCode.OK);
     expect(res.data.access_token).toEqual(TOKEN);
     expect(res.data.refresh_token).toEqual(`r_${TOKEN}`);
@@ -144,13 +144,13 @@ describe("Auth", () => {
     jest
       .spyOn(mockAxios, "post")
       .mockRejectedValue({ status: HTTPStatusCode.BadRequest });
-    const res = await client.auth.refreshToken(TOKEN).catch((err) => err);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token').catch((err) => err);
     expect(res.status).toEqual(HTTPStatusCode.BadRequest);
   });
 
   it("should call changePassword properly with valid response", async () => {
     jest.spyOn(mockAxios, "post").mockResolvedValue(validResponse);
-    const res = await client.auth.refreshToken(TOKEN);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token');
     expect(res.status).toEqual(HTTPStatusCode.OK);
   });
 
@@ -158,7 +158,7 @@ describe("Auth", () => {
     jest
       .spyOn(mockAxios, "post")
       .mockRejectedValue({ status: HTTPStatusCode.BadRequest });
-    const res = await client.auth.refreshToken(TOKEN).catch((err) => err);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token').catch((err) => err);
     expect(res.status).toEqual(HTTPStatusCode.BadRequest);
   });
 });
