@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023-2024 Arkemis S.r.l.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /**
  * Copyright 2023 Arkemis S.r.l.
  *
@@ -118,7 +134,7 @@ describe("Auth", () => {
       ...validResponse,
       data: { access_token: TOKEN, refresh_token: `r_${TOKEN}` },
     });
-    const res = await client.auth.refreshToken(TOKEN);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token');
     expect(res.status).toEqual(HTTPStatusCode.OK);
     expect(res.data.access_token).toEqual(TOKEN);
     expect(res.data.refresh_token).toEqual(`r_${TOKEN}`);
@@ -128,13 +144,13 @@ describe("Auth", () => {
     jest
       .spyOn(mockAxios, "post")
       .mockRejectedValue({ status: HTTPStatusCode.BadRequest });
-    const res = await client.auth.refreshToken(TOKEN).catch((err) => err);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token').catch((err) => err);
     expect(res.status).toEqual(HTTPStatusCode.BadRequest);
   });
 
   it("should call changePassword properly with valid response", async () => {
     jest.spyOn(mockAxios, "post").mockResolvedValue(validResponse);
-    const res = await client.auth.refreshToken(TOKEN);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token');
     expect(res.status).toEqual(HTTPStatusCode.OK);
   });
 
@@ -142,7 +158,7 @@ describe("Auth", () => {
     jest
       .spyOn(mockAxios, "post")
       .mockRejectedValue({ status: HTTPStatusCode.BadRequest });
-    const res = await client.auth.refreshToken(TOKEN).catch((err) => err);
+    const res = await client.auth.refreshToken(TOKEN, 'refresh_token').catch((err) => err);
     expect(res.status).toEqual(HTTPStatusCode.BadRequest);
   });
 });
