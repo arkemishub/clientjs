@@ -104,17 +104,19 @@ export default class Auth {
 
   /**
    * Refresh Token to refresh if token is expired
+   * @param access_token
    * @param refresh_token
    */
   async refreshToken(
+    access_token: TToken["access_token"],
     refresh_token: TToken["refresh_token"],
   ): Promise<AxiosResponse> {
     return this.httpClient.post(
       "/auth/refresh",
-      {},
+      {refresh_token},
       {
         headers: {
-          Authorization: `Bearer ${refresh_token}`,
+          Authorization: `Bearer ${access_token}`,
         },
       },
     );
