@@ -1,5 +1,14 @@
 # @arkejs/client
 
+## 2.11.1
+
+### Patch Changes
+
+- 583e1f0: Update signup endpoint
+- 2132849: update axios deps
+- 07c51df: fix: add link to BaseParameter enum
+- 4c3102b: fix refresh token
+
 ## 2.11.0
 
 ### Minor Changes
